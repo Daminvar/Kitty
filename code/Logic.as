@@ -12,21 +12,24 @@
 
 	public class Logic extends MovieClip
 	{
-		var _kitty:Kitty;
 		var _key:KeyPoll;
-		var reticle:Reticle;
-		var radius:Number;
+		var _kitty:Kitty;
+		var _map:Map;
+		var _radius:Number;
+		var _reticle:Reticle
 
 		public function Logic()
 		{
 			_kitty = new Kitty(100,300,this);
 			_key = new KeyPoll(this.stage);
-			reticle = new Reticle();
-			radius = 300;
+			_map = new Map("res/testmap.tmx");
+			_reticle = new Reticle();
+			_radius = 300;
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_kitty);
-			addChild(reticle);
+			addChild(_reticle);
+			addChild(_map);
 		}
 
 		public function update(e:Event)
@@ -37,18 +40,18 @@
 			var dx:Number = mousePnt.x - _kitty.x;
 			var dy:Number = mousePnt.y - _kitty.y;
 			var angle:Number = Math.atan2(dy,dx);
-			if (mousePnt.x > (Math.cos(angle)*radius)+ _kitty.x)
+			if (mousePnt.x > (Math.cos(angle)*_radius)+ _kitty.x)
 			{
-				reticle.x = (Math.cos(angle)*radius)+ _kitty.x;
+				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
 			}
-			if (mousePnt.y > (Math.sin(angle)*radius) + _kitty.y)
+			if (mousePnt.y > (Math.sin(angle)*_radius) + _kitty.y)
 			{
-				reticle.y = (Math.sin(angle)*radius) + _kitty.y;
+				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
 			else
 			{
-				reticle.x = mousePnt.x;
-				reticle.y = mousePnt.y;
+				_reticle.x = mousePnt.x;
+				_reticle.y = mousePnt.y;
 			}
 		}
 
