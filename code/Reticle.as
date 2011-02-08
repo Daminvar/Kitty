@@ -1,10 +1,13 @@
-﻿package code {
-    import flash.display.MovieClip;
-    import flash.ui.*;
+﻿package code
+{
+	import flash.display.MovieClip;
+	import flash.ui.*;
 
-    public class Reticle extends MovieClip {
-        public function Reticle() {
-            Mouse.hide();
-        }
-    }
+	public class Reticle extends MovieClip
+	{
+		public function Reticle()
+		{
+			Mouse.hide();
+		}
+	}
 }
