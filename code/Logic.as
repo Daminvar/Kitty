@@ -27,9 +27,9 @@
 			_radius = 300;
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
+			addChild(_map);
 			addChild(_kitty);
 			addChild(_reticle);
-			addChild(_map);
 		}
 
 		public function update(e:Event)
