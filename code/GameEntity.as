@@ -60,8 +60,6 @@
 		/** Returns true if entity is touching the passed-in entity. */
 		public function isColliding(e:GameEntity):Boolean
 		{
-			// Hit test object is fine for these purposes as nearly everything
-			// in-game is square.
 			return this.hitTestObject(e);
 		}
 	}
