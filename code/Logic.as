@@ -10,7 +10,7 @@
 
 	import uk.co.bigroom.input.*;
 
-	public class Logic extends MovieClip
+	public class Logic extends GameEntity
 	{
 		var _key:KeyPoll;
 		var _kitty:Kitty;

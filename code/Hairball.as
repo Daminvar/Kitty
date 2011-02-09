@@ -3,7 +3,7 @@
 	import flash.display.MovieClip;
 	import flash.geom.Point;
 
-	public class Hairball extends MovieClip
+	public class Hairball extends GameEntity
 	{
 		private var SPEED:Number = 20;
 

@@ -6,7 +6,7 @@
 	import flash.media.*;
 	import flash.net.*;
 
-	public class Kitty extends MovieClip
+	public class Kitty extends GameEntity
 	{
 		var ACCELERATION:Number = 4;
 		var SPEED:Number = 6;
