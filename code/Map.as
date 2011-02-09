@@ -5,7 +5,7 @@ package code
 	import flash.geom.*;
 	import flash.net.*;
 
-	public class Map extends MovieClip
+	public class Map extends GameEntity
 	{
 		//The tilemap could be level specific if time permits.
 		[Embed(source="../res/tilemap.png")]
