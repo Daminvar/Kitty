@@ -17,6 +17,7 @@
 		var _map:Map;
 		var _radius:Number;
 		var _reticle:Reticle
+		var _skeletunaTest:Skeletuna;
 
 		public function Logic()
 		{
@@ -25,11 +26,13 @@
 			_map = new Map("res/testmap.tmx");
 			_reticle = new Reticle();
 			_radius = 300;
+			_skeletunaTest = new Skeletuna(350,180,2,30,30);
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_map);
 			addChild(_kitty);
 			addChild(_reticle);
+			addChild(_skeletunaTest);
 		}
 
 		public function update(e:Event)
@@ -53,6 +56,8 @@
 				_reticle.x = mousePnt.x;
 				_reticle.y = mousePnt.y;
 			}
+			
+			_skeletunaTest.pace();
 		}
 
 		private function handleInput()
