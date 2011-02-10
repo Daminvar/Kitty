@@ -46,18 +46,30 @@
 			var dx:Number = mousePnt.x - _kitty.x;
 			var dy:Number = mousePnt.y - _kitty.y;
 			var angle:Number = Math.atan2(dy,dx);
-			if (mousePnt.x > (Math.cos(angle)*_radius)+ _kitty.x)
+                        _reticle.x = mousePnt.x;
+			_reticle.y = mousePnt.y;
+			if (mousePnt.x > (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y > (Math.sin(angle)*_radius) + _kitty.y && mousePnt.x > _kitty.x &&       mousePnt.y > _kitty.y)
 			{
 				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
-			}
-			if (mousePnt.y > (Math.sin(angle)*_radius) + _kitty.y)
-			{
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
-			else
+			
+			if (mousePnt.x < (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y > (Math.sin(angle)*_radius) + _kitty.y && mousePnt.x < _kitty.x && mousePnt.y > _kitty.y)
 			{
-				_reticle.x = mousePnt.x;
-				_reticle.y = mousePnt.y;
+				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
+				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
+			}
+			
+			if (mousePnt.x > (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y < (Math.sin(angle)*_radius) + _kitty.y && mousePnt.x > _kitty.x && mousePnt.y < _kitty.y)
+			{
+				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
+				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
+			}
+			
+			if (mousePnt.x < (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y < (Math.sin(angle)*_radius) + _kitty.y && mousePnt.x < _kitty.x && mousePnt.y < _kitty.y)
+			{
+				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
+				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
 			_skeletunaTest.pace();
 			trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
