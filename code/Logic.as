@@ -48,25 +48,29 @@
 			var angle:Number = Math.atan2(dy,dx);
                         _reticle.x = mousePnt.x;
 			_reticle.y = mousePnt.y;
-			if (mousePnt.x > (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y > (Math.sin(angle)*_radius) + _kitty.y && mousePnt.x > _kitty.x &&       mousePnt.y > _kitty.y)
+			if (mousePnt.x > (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y > (Math.sin(angle)*_radius) + _kitty.y
+                                && mousePnt.x > _kitty.x &&       mousePnt.y > _kitty.y)
 			{
 				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
 			
-			if (mousePnt.x < (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y > (Math.sin(angle)*_radius) + _kitty.y && mousePnt.x < _kitty.x && mousePnt.y > _kitty.y)
+			if (mousePnt.x < (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y > (Math.sin(angle)*_radius) + _kitty.y 
+                                    && mousePnt.x < _kitty.x && mousePnt.y > _kitty.y)
 			{
 				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
 			
-			if (mousePnt.x > (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y < (Math.sin(angle)*_radius) + _kitty.y && mousePnt.x > _kitty.x && mousePnt.y < _kitty.y)
+			if (mousePnt.x > (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y < (Math.sin(angle)*_radius) + _kitty.y 
+                                    && mousePnt.x > _kitty.x && mousePnt.y < _kitty.y)
 			{
 				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
 			
-			if (mousePnt.x < (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y < (Math.sin(angle)*_radius) + _kitty.y && mousePnt.x < _kitty.x && mousePnt.y < _kitty.y)
+			if (mousePnt.x < (Math.cos(angle)*_radius)+ _kitty.x && mousePnt.y < (Math.sin(angle)*_radius) + _kitty.y 
+                               && mousePnt.x < _kitty.x && mousePnt.y < _kitty.y)
 			{
 				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
