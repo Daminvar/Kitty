@@ -28,6 +28,7 @@
 			stepsLeft = 0;
 			stepsRight = 0;
 			facing = "left";
+			
 		}
 				
 		public function pace(){
@@ -57,14 +58,17 @@
 				facing = "right";
 				
 				// Flip image to face right
-				scaleX = -1;
+				//scaleX = -1;
+				this.gotoAndStop("right");
+				
 			}else if(stepsRight>= maxStepsLeft){
 				// Reaches last step -- reset step count and flip direction
 				stepsRight = 0;
 				facing = "left";
 				
 				// Flip image to face left
-				scaleX = 1;
+				//scaleX = 1;
+				this.gotoAndStop("left");
 			}
 			
 			

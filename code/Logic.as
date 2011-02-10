@@ -26,7 +26,7 @@
 			_map = new Map("res/testmap.tmx");
 			_reticle = new Reticle();
 			_radius = 300;
-			_skeletunaTest = new Skeletuna(350,180,2,30,30);
+			_skeletunaTest = new Skeletuna(350,180,2,70,30);
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_map);
@@ -34,7 +34,6 @@
 			addChild(_reticle);
 			addChild(_skeletunaTest);
 		}
-
 		public function update(e:Event)
 		{
 			//There should be a better and more generic way of handling this
