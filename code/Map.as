@@ -88,12 +88,14 @@ package code
 				{
 					for (var xIndex = 0; xIndex < _mapWidth; xIndex++)
 					{
+						//Tiled uses 0 for blank tiles, but that doesn't work
+						//so nicely in calculations.
 						var tid:int = layer[yIndex][xIndex] - 1;
 						if (tid == -1)
 							continue;
 						var rect:Rectangle = new Rectangle(
-							(tid * _tileSize) % (_mapWidth * _tileSize),
-							(tid * _tileSize) / (_mapWidth * _tileSize),
+							tid * _tileSize % _tileset.width,
+							Math.floor((tid * _tileSize) / _tileset.width) * _tileSize,
 							_tileSize,
 							_tileSize);
 						var dest:Point = new Point(
