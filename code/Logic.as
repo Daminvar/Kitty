@@ -57,7 +57,7 @@
 				_reticle.x = mousePnt.x;
 				_reticle.y = mousePnt.y;
 			}
-			trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
+			trace(_map.isCollidingWithEnvironment(_kitty.getRect(this)));
 		}
 
 		private function handleInput()
