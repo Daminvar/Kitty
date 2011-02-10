@@ -5,22 +5,30 @@ package code
 	import flash.geom.*;
 	import flash.net.*;
 
-	public class Map extends MovieClip
+	public class Map extends GameEntity
 	{
 		//The tilemap could be level specific if time permits.
 		[Embed(source="../res/tilemap.png")]
 		private static var _Tileset:Class;
 		private static var _tileset:Bitmap;
 
+		private var _collisionRects:Vector.<Rectangle>;
+		private var _isLoaded:Boolean;
 		private var _mapHeight:int;
 		private var _mapWidth:int;
 		private var _renderedMap:Bitmap;
 		private var _tileSize:int;
 		private var _tiles:Vector.<Vector.<Vector.<int>>>;
 
+		public function get isLoaded():Boolean
+		{
+			return _isLoaded;
+		}
+
 		/** Loads the map specified by the given string. */
 		public function Map(mapFile:String)
 		{
+			_isLoaded = false;
 			//Check whether the _tileset var needs to be initialized.
 			if (_tileset == null)
 				_tileset = new _Tileset();
@@ -30,6 +38,7 @@ package code
 				var loadedMap = new XML(e.target.data);
 				parseMap(loadedMap);
 				renderMap();
+				_isLoaded = true;
 			});
 		}
 
@@ -39,9 +48,18 @@ package code
 			_mapHeight = xmlMap.@height;
 			_tileSize = xmlMap.tileset.@tilewidth; //Assuming square tiles.
 			_tiles = new Vector.<Vector.<Vector.<int>>>(xmlMap.layer.data.length());
+			//Using a foreach loop gives strange results, so the more verbose
+			//for loop version is used.
 			for (var i = 0; i < xmlMap.layer.data.length(); i++)
 			{
 				_tiles[i] = stringTo2DVector(xmlMap.layer.data[i]);
+			}
+			var collisionObjects:XMLList = xmlMap.objectgroup.(@name == "collision")[0].object;
+			_collisionRects = new Vector.<Rectangle>(collisionObjects.length());
+			for (var i = 0; i < collisionObjects.length(); i++)
+			{
+				var obj = collisionObjects[i];
+				_collisionRects[i] = new Rectangle(obj.@x, obj.@y, obj.@width, obj.@height);
 			}
 		}
 
@@ -87,6 +105,20 @@ package code
 			}
 			_renderedMap = new Bitmap(renderedData);
 			addChild(_renderedMap);
+		}
+
+		public function isCollidingWithEnvironment(rect:Rectangle):Boolean
+		{
+			abortIfNotLoaded();
+			return !_collisionRects.every(function(r:Rectangle, i:int, v:Vector.<Rectangle>) {
+				return !r.intersects(rect);
+			});
+		}
+
+		private function abortIfNotLoaded():void
+		{
+			if (_isLoaded == false)
+				throw new Error("The map hasn't finished loading.");
 		}
 	}
 }

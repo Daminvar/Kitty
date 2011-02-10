@@ -37,6 +37,10 @@
 
 		public function update(e:Event)
 		{
+			//There should be a better and more generic way of handling this
+			//sort of thing.
+			if (!_map.isLoaded)
+				return;
 			handleInput();
 			_kitty.bulletManager.update();
 			var mousePnt = localToGlobal(new Point(mouseX,mouseY));
@@ -58,6 +62,8 @@
 			}
 			
 			_skeletunaTest.pace();
+			trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
+			
 		}
 
 		private function handleInput()
