@@ -8,11 +8,13 @@
 		
 		private var objectArray:Array;	// Container to hold background objects
 		private var background_mc:MovieClip;
+		private var foreground_mc:MovieClip;
 		
 		public function Background() {
 			// constructor code
 			objectArray = new Array();
 			background_mc = new MovieClip();
+			foreground_mc = new MovieClip();
 			
 		}
 		
@@ -20,14 +22,23 @@
 			return background_mc;
 		}
 		
+		public function getForeground(){
+			return foreground_mc;
+		}
+		
 		/*
 			Adds movieclip to the background "layer"
 			Object--Movieclip object to add
 		*/
-		public function addToBackground(object:MovieClip){
+		public function addToBackground(object:GameEntity){
 			//objectArray.push(object);
 			background_mc.addChild(object);
 		}
+		
+		public function addToForeground(object:GameEntity){
+			foreground_mc.addChild(object);
+		}
+		
 		
 		/*
 			This function updates (moves) the background
@@ -35,17 +46,14 @@
 			speed -- Speed kitty is moving
 		*/
 		public function update(dir:String, speed:Number){
-			//for each(var object:MovieClip in objectArray){
-				if(dir == "left"){
-					//object.x += speed;
-					background_mc.x += speed;
-
-				}else if(dir == "right"){
-					//object.x -= speed;
-					background_mc.x -= speed;
-				}
-			//}
-			
+			if(dir == "left"){
+				background_mc.x += speed;
+				foreground_mc.x += speed;
+			}else if(dir == "right"){
+				background_mc.x -= speed;
+				foreground_mc.x -= speed;
+			}
+		
 		}
 
 	}

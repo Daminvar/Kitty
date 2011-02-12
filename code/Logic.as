@@ -33,10 +33,8 @@
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_background.getBackground());
-			//addChild(_map);
 			addChild(_kitty);
 			addChild(_reticle);
-			//addChild(_skeletunaTest);
 			
 			// BACKGROUND - Comment out to remove scrolling
 			
