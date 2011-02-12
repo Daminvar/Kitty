@@ -4,13 +4,20 @@
 	/* Class to create a background to scroll
 		Add objects to the background so that they can all be updated simultaneously to "scroll"
 	*/
-	public class Background {
+	public class Background extends MovieClip {
 		
 		private var objectArray:Array;	// Container to hold background objects
-
+		private var background_mc:MovieClip;
+		
 		public function Background() {
 			// constructor code
 			objectArray = new Array();
+			background_mc = new MovieClip();
+			
+		}
+		
+		public function getBackground(){
+			return background_mc;
 		}
 		
 		/*
@@ -18,7 +25,8 @@
 			Object--Movieclip object to add
 		*/
 		public function addToBackground(object:MovieClip){
-			objectArray.push(object);
+			//objectArray.push(object);
+			background_mc.addChild(object);
 		}
 		
 		/*
@@ -27,13 +35,17 @@
 			speed -- Speed kitty is moving
 		*/
 		public function update(dir:String, speed:Number){
-			for each(var object:MovieClip in objectArray){
+			//for each(var object:MovieClip in objectArray){
 				if(dir == "left"){
-					object.x += speed;
+					//object.x += speed;
+					background_mc.x += speed;
+
 				}else if(dir == "right"){
-					object.x -= speed;
+					//object.x -= speed;
+					background_mc.x -= speed;
 				}
-			}
+			//}
+			
 		}
 
 	}

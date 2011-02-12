@@ -32,14 +32,16 @@
 			_background = new Background();
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
-			addChild(_map);
+			addChild(_background.getBackground());
+			//addChild(_map);
 			addChild(_kitty);
 			addChild(_reticle);
-			addChild(_skeletunaTest);
+			//addChild(_skeletunaTest);
 			
 			// BACKGROUND - Comment out to remove scrolling
-			_background.addToBackground(_skeletunaTest);
+			
 			_background.addToBackground(_map);
+			_background.addToBackground(_skeletunaTest);
 			// BACKGROUND - Comment out to remove scrolling
 			
 		}
@@ -90,7 +92,6 @@
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
 			_skeletunaTest.pace();
-			
 			// hairball collision detection
 			for (var i:int = 0; i < _kitty.bulletManager.ActiveBullets.length; i++)
 			{
@@ -101,7 +102,7 @@
 					//{
 						if (contains(_skeletunaTest))
 						{
-							removeChild(_skeletunaTest);
+							_background.getBackground().removeChild(_skeletunaTest);
 							_kitty.bulletManager.killBullet(b, i);
 						}
 					//}
