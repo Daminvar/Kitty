@@ -1,4 +1,4 @@
-package code
+﻿package code
 {
 	import flash.display.*;
 	import flash.events.*;

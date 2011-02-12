@@ -91,6 +91,23 @@
 			}
 			_skeletunaTest.pace();
 			
+			// hairball collision detection
+			for (var i:int = 0; i < _kitty.bulletManager.ActiveBullets.length; i++)
+			{
+				var b:Hairball = _kitty.bulletManager.ActiveBullets[i] as Hairball;
+				if (b.hitTestObject(_skeletunaTest))
+				{
+					//if (b.hitTestPoint(_skeletunaTest.x, _skeletunaTest.y, true))
+					//{
+						if (contains(_skeletunaTest))
+						{
+							removeChild(_skeletunaTest);
+							_kitty.bulletManager.killBullet(b, i);
+						}
+					//}
+				}
+			}
+			
 			// Collision Debug Test
 			//trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
 		}

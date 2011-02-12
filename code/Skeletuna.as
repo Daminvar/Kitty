@@ -3,7 +3,7 @@
 	import flash.display.MovieClip;
 	
 	
-	public class Skeletuna extends MovieClip {
+	public class Skeletuna extends GameEntity {
 		private var stepsLeft:Number;		// Current count of steps to the left
 		private var stepsRight:Number;		// Current count of steps to the right
 		private var moveSpeed:Number;
