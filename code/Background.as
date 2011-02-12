@@ -1,7 +1,9 @@
 ﻿package code {
 	import flash.display.MovieClip;
 	
-	// Class to scroll background
+	/* Class to create a background to scroll
+		Add objects to the background so that they can all be updated simultaneously to "scroll"
+	*/
 	public class Background {
 		
 		private var objectArray:Array;	// Container to hold background objects

@@ -33,11 +33,14 @@
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_map);
-			_background.addToBackground(_map);
 			addChild(_kitty);
 			addChild(_reticle);
 			addChild(_skeletunaTest);
+			
+			// BACKGROUND - Comment out to remove scrolling
 			_background.addToBackground(_skeletunaTest);
+			_background.addToBackground(_map);
+			// BACKGROUND - Comment out to remove scrolling
 			
 		}
 		
@@ -87,6 +90,8 @@
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
 			_skeletunaTest.pace();
+			
+			// Collision Debug Test
 			//trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
 		}
 
@@ -94,15 +99,27 @@
 		{
 			if (_key.isDown(Keyboard.A))
 			{
+				// BACKGROUND - Uncomment to remove scrolling
 				//_kitty.moveLeft();
+				// BACKGROUND - Uncomment to remove scrolling
+				
+				// BACKGROUND - Comment out to remove scrolling
 				_background.update("left", _kitty.SPEED);
+				// BACKGROUND - Comment out to remove scrolling
+				
 				_kitty.gotoAndStop("reg_kitty");
 			}
 
 			if (_key.isDown(Keyboard.D))
 			{
+				// BACKGROUND - Uncomment to remove scrolling
 				//_kitty.moveRight();
+				// BACKGROUND - Uncomment to remove scrolling
+				
+				// BACKGROUND - Comment out to remove scrolling
 				_background.update("right", _kitty.SPEED);
+				// BACKGROUND - Comment out to remove scrolling
+				
 				_kitty.gotoAndStop("reg_kitty");
 			}
 
