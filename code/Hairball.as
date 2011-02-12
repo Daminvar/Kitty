@@ -38,7 +38,7 @@
 		public function checkCollision() {
 			if(this.hitTestObject(game._skeletunaTest)){
 				/* CLEAN UP NEEDS TO BE PROPERLY ADDED HERE!! */
-		
+				
 			}
 		}
 	}
