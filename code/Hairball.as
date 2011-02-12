@@ -30,16 +30,8 @@
 
 		public function move():void
 		{
-			checkCollision();
 			x +=  vx;
 			y +=  vy;
-		}
-		
-		public function checkCollision() {
-			if(this.hitTestObject(game._skeletunaTest)){
-				/* CLEAN UP NEEDS TO BE PROPERLY ADDED HERE!! */
-				
-			}
 		}
 	}
 }

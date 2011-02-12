@@ -45,6 +45,7 @@
 				
 				// Add to step count
 				stepsRight += 1;
+
 				// Move position by speed
 				x += moveSpeed;
 				
