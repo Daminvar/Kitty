@@ -2,6 +2,7 @@
 {
 	import flash.display.MovieClip;
 	import flash.geom.Point;
+	
 
 	public class Hairball extends GameEntity
 	{
@@ -10,9 +11,11 @@
 		public var age:int = 0;
 		private var vx:Number;
 		private var vy:Number;
+		private var game:Logic;
 
-		public function Hairball()
+		public function Hairball(game:Logic)
 		{
+			this.game = game;
 		}
 
 		public function fire(firingPosition:Point, travelRotation:Number):void
@@ -27,8 +30,16 @@
 
 		public function move():void
 		{
+			checkCollision();
 			x +=  vx;
 			y +=  vy;
+		}
+		
+		public function checkCollision() {
+			if(this.hitTestObject(game._skeletunaTest)){
+				/* CLEAN UP NEEDS TO BE PROPERLY ADDED HERE!! */
+		
+			}
 		}
 	}
 }

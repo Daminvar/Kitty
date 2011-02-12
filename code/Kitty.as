@@ -16,6 +16,8 @@
 		var velocity:Number;
 		private var cooldown:int = 10;
 		public var bulletManager:BulletManager;
+		private var game:Logic;
+		private var jumping:Boolean;
 
 		public function Kitty(xCo:Number,yCo:Number,game:Logic)
 		{
@@ -24,6 +26,7 @@
 			velocity = ORIGINAL_VELOCITY;
 			origY = yCo;
 			bulletManager = new BulletManager(game,10,10,50);
+			this.game = game;
 		}
 
 		public function moveLeft()
@@ -43,6 +46,7 @@
 
 		public function jumpProper(e:Event)
 		{
+			jumping = true;
 			y -=  velocity;
 			velocity -=  ACCELERATION;
 			if (y > origY)
@@ -50,8 +54,20 @@
 				y = origY;
 				removeEventListener(Event.ENTER_FRAME, jumpProper);
 				velocity = ORIGINAL_VELOCITY;
+				jumping = false;
 			}
 
+		}
+		
+		public function fall(){
+			if(!game.getMap().isCollidingWithEnvironment(this.getRect(game)) && !jumping){
+				y+=velocity;
+				velocity += ACCELERATION;
+				trace("true");
+			}else{
+				trace("false");
+			}
+			
 		}
 
 		public function fire():void

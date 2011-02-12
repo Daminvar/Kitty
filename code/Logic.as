@@ -9,6 +9,7 @@
 	import flash.ui.Mouse;
 
 	import uk.co.bigroom.input.*;
+	import fl.motion.easing.Back;
 
 	public class Logic extends GameEntity
 	{
@@ -18,6 +19,7 @@
 		var _radius:Number;
 		var _reticle:Reticle
 		var _skeletunaTest:Skeletuna;
+		var _background:Background;
 
 		public function Logic()
 		{
@@ -27,12 +29,20 @@
 			_reticle = new Reticle();
 			_radius = 300;
 			_skeletunaTest = new Skeletuna(350,180,2,70,30);
+			_background = new Background();
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_map);
+			_background.addToBackground(_map);
 			addChild(_kitty);
 			addChild(_reticle);
 			addChild(_skeletunaTest);
+			_background.addToBackground(_skeletunaTest);
+			
+		}
+		
+		public function getMap():Map{
+			return _map;
 		}
 		public function update(e:Event)
 		{
@@ -42,6 +52,7 @@
 				return;
 			handleInput();
 			_kitty.bulletManager.update();
+			_kitty.fall();
 			var mousePnt = localToGlobal(new Point(mouseX,mouseY));
 			var dx:Number = mousePnt.x - _kitty.x;
 			var dy:Number = mousePnt.y - _kitty.y;
@@ -76,20 +87,22 @@
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
 			}
 			_skeletunaTest.pace();
-			trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
+			//trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
 		}
 
 		private function handleInput()
 		{
 			if (_key.isDown(Keyboard.A))
 			{
-				_kitty.moveLeft();
+				//_kitty.moveLeft();
+				_background.update("left", _kitty.SPEED);
 				_kitty.gotoAndStop("reg_kitty");
 			}
 
 			if (_key.isDown(Keyboard.D))
 			{
-				_kitty.moveRight();
+				//_kitty.moveRight();
+				_background.update("right", _kitty.SPEED);
 				_kitty.gotoAndStop("reg_kitty");
 			}
 
@@ -112,5 +125,6 @@
 		{
 			_kitty.fire();
 		}
+		
 	}
 }

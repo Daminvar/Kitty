@@ -27,7 +27,7 @@
 
 			for (var i:int = 0; i < aSize; i++)
 			{
-				var bullet:Hairball = new Hairball();
+				var bullet:Hairball = new Hairball(game);
 				allBullets.push(bullet);
 			}
 
