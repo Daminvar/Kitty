@@ -25,21 +25,23 @@
 		{
 			_kitty = new Kitty(100,300,this);
 			_key = new KeyPoll(this.stage);
-			_map = new Map("res/testmap.tmx");
 			_reticle = new Reticle();
 			_radius = 300;
 			_skeletunaTest = new Skeletuna(350,180,2,70,30);
 			_background = new Background();
+			_map = new Map("res/testmap.tmx",_background.getBackground(),_background.getForeground());
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_background.getBackground());
+			addChild(_background.getObjectLayer());
 			addChild(_kitty);
 			addChild(_reticle);
+			addChild(_background.getForeground()); 
 			
 			// BACKGROUND - Comment out to remove scrolling
 			
 			_background.addToBackground(_map);
-			_background.addToBackground(_skeletunaTest);
+			_background.addToObjectLayer(_skeletunaTest);
 			// BACKGROUND - Comment out to remove scrolling
 			
 		}
@@ -100,7 +102,7 @@
 					//{
 						if (contains(_skeletunaTest))
 						{
-							_background.getBackground().removeChild(_skeletunaTest);
+							_background.getObjectLayer().removeChild(_skeletunaTest);
 							_kitty.bulletManager.killBullet(b, i);
 						}
 					//}

@@ -7,23 +7,30 @@
 	public class Background extends MovieClip {
 		
 		private var objectArray:Array;	// Container to hold background objects
-		private var background_mc:MovieClip;
-		private var foreground_mc:MovieClip;
+		private var background_mc:GameEntity;
+		private var foreground_mc:GameEntity;
+		private var objectLayer_mc:GameEntity;
 		
 		public function Background() {
 			// constructor code
 			objectArray = new Array();
-			background_mc = new MovieClip();
-			foreground_mc = new MovieClip();
-			
+			background_mc = new GameEntity();
+			foreground_mc = new GameEntity();
+			objectLayer_mc = new GameEntity();
 		}
 		
 		public function getBackground(){
 			return background_mc;
 		}
 		
+		
+		
 		public function getForeground(){
 			return foreground_mc;
+		}
+		
+		public function getObjectLayer(){
+			return objectLayer_mc;
 		}
 		
 		/*
@@ -39,6 +46,9 @@
 			foreground_mc.addChild(object);
 		}
 		
+		public function addToObjectLayer(object:GameEntity){
+			objectLayer_mc.addChild(object);
+		}
 		
 		/*
 			This function updates (moves) the background
@@ -49,9 +59,11 @@
 			if(dir == "left"){
 				background_mc.x += speed;
 				foreground_mc.x += speed;
+				objectLayer_mc.x += speed;
 			}else if(dir == "right"){
 				background_mc.x -= speed;
 				foreground_mc.x -= speed;
+				objectLayer_mc.x -= speed;
 			}
 		
 		}

@@ -12,13 +12,17 @@
 		private static var _Tileset:Class;
 		private static var _tileset:Bitmap;
 
+		private var _bgTarget:GameEntity;
 		private var _collisionRects:Vector.<Rectangle>;
 		private var _isLoaded:Boolean;
+		private var _fgTarget:GameEntity;
 		private var _mapHeight:int;
 		private var _mapWidth:int;
 		private var _renderedMap:Bitmap;
 		private var _tileSize:int;
 		private var _tiles:Vector.<Vector.<Vector.<int>>>;
+
+		
 
 		public function get isLoaded():Boolean
 		{
@@ -26,12 +30,14 @@
 		}
 
 		/** Loads the map specified by the given string. */
-		public function Map(mapFile:String)
+		public function Map(mapFile:String, bgTarget:GameEntity, fgTarget:GameEntity)
 		{
 			_isLoaded = false;
 			//Check whether the _tileset var needs to be initialized.
 			if (_tileset == null)
 				_tileset = new _Tileset();
+			_bgTarget = bgTarget;
+			_fgTarget = fgTarget;
 			var request = new URLRequest(mapFile);
 			var loader = new URLLoader(request);
 			loader.addEventListener(Event.COMPLETE, function(e:Event) {
@@ -106,7 +112,7 @@
 				}
 			}
 			_renderedMap = new Bitmap(renderedData);
-			addChild(_renderedMap);
+			_bgTarget.addChild(_renderedMap);
 		}
 
 		public function isCollidingWithEnvironment(rect:Rectangle):Boolean
