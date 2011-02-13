@@ -10,6 +10,8 @@
 		private var background_mc:GameEntity;
 		private var foreground_mc:GameEntity;
 		private var objectLayer_mc:GameEntity;
+		private var ORIGINAL_X:Number;
+		private var ORIGINAL_Y:Number;
 		
 		public function Background() {
 			// constructor code
@@ -29,6 +31,14 @@
 		
 		public function getObjectLayer(){
 			return objectLayer_mc;
+		}
+		
+		public function reset()
+		{
+			background_mc.x = 0;
+			foreground_mc.x = 0;
+			objectLayer_mc.x = 0;			
+		
 		}
 		
 		/*
@@ -54,7 +64,7 @@
 			speed -- Speed kitty is moving
 		*/
 		public function update(dir:String, speed:Number){
-			if(dir == "left"){
+			if(dir == "left" && background_mc.x < 0){
 				background_mc.x += speed;
 				foreground_mc.x += speed;
 				objectLayer_mc.x += speed;

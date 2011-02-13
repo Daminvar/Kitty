@@ -58,15 +58,6 @@
 		{
 			//There should be a better and more generic way of handling this
 			//sort of thing.
-			if(_kitty.isDead())
-			{
-				_background.reset();
-				removeChild(_kitty);
-				_kitty = null;
-				_kitty = new Kitty(100,300,this);
-				addChild(_kitty);
-			}
-			else{
 			if (!_map.isLoaded)
 				return;
 			handleInput();
@@ -132,7 +123,6 @@
 					}
 					
 				}
-			}
 			}
 		}
 

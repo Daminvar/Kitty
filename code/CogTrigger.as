@@ -13,7 +13,9 @@
 		}
 		
 		public function rotate(){
-			this.rotation -= 10;
+			if(rotation <= 40){
+				this.rotation -= 10;
+			}
 			
 		}
 	}
