@@ -29,7 +29,9 @@
 			_radius = 300;
 			_skeletunaTest = new Skeletuna(350,180,2,70,30);
 			_background = new Background();
-			_map = new Map("res/testmap.tmx",_background.getBackground(),_background.getForeground());
+			_map = new Map("res/testmap.tmx",
+				_background.getBackground(),
+				_background.getForeground());
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_background.getBackground());
@@ -38,12 +40,8 @@
 			addChild(_reticle);
 			addChild(_background.getForeground()); 
 			
-			// BACKGROUND - Comment out to remove scrolling
-			
 			_background.addToBackground(_map);
 			_background.addToObjectLayer(_skeletunaTest);
-			// BACKGROUND - Comment out to remove scrolling
-			
 		}
 		
 		public function getMap():Map{
@@ -108,9 +106,6 @@
 					//}
 				}
 			}
-			
-			// Collision Debug Test
-			//trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
 		}
 
 		private function handleInput()
