@@ -111,44 +111,13 @@
 		private function handleInput()
 		{
 			if (_key.isDown(Keyboard.A))
-			{
-				// BACKGROUND - Uncomment to remove scrolling
-				//_kitty.moveLeft();
-				// BACKGROUND - Uncomment to remove scrolling
-				
-				// BACKGROUND - Comment out to remove scrolling
 				_background.update("left", _kitty.SPEED);
-				// BACKGROUND - Comment out to remove scrolling
-				
-				_kitty.gotoAndStop("reg_kitty");
-			}
 
 			if (_key.isDown(Keyboard.D))
-			{
-				// BACKGROUND - Uncomment to remove scrolling
-				//_kitty.moveRight();
-				// BACKGROUND - Uncomment to remove scrolling
-				
-				// BACKGROUND - Comment out to remove scrolling
 				_background.update("right", _kitty.SPEED);
-				// BACKGROUND - Comment out to remove scrolling
-				
-				_kitty.gotoAndStop("reg_kitty");
-			}
 
 			if (_key.isDown(Keyboard.SPACE))
-			{
 				_kitty.jump();
-			}
-
-			if (_key.isDown(Keyboard.S))
-			{
-				_kitty.gotoAndStop("crouch_Kitty");
-			}
-			else
-			{
-				_kitty.gotoAndStop("reg_kitty");
-			}
 		}
 
 		private function onClick(e:MouseEvent):void
