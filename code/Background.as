@@ -23,8 +23,6 @@
 			return background_mc;
 		}
 		
-		
-		
 		public function getForeground(){
 			return foreground_mc;
 		}

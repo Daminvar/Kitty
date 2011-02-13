@@ -27,6 +27,7 @@
 			origY = yCo;
 			bulletManager = new BulletManager(game,10,10,50);
 			this.game = game;
+			showOutline();
 		}
 
 		public function moveLeft()
@@ -60,14 +61,11 @@
 		}
 		
 		public function fall(){
-			if(!game.getMap().isCollidingWithEnvironment(this.getRect(game)) && !jumping){
+			if(!game.getMap().isCollidingWithEnvironment(this) && !jumping){
 				y+=velocity;
 				velocity += ACCELERATION;
 				trace("true");
-			}else{
-				trace("false");
 			}
-			
 		}
 
 		public function fire():void

@@ -13,16 +13,14 @@
 		private static var _tileset:Bitmap;
 
 		private var _bgTarget:GameEntity;
-		private var _collisionRects:Vector.<Rectangle>;
-		private var _isLoaded:Boolean;
+		private var _collisionEntities:Vector.<GameEntity>;
 		private var _fgTarget:GameEntity;
+		private var _isLoaded:Boolean;
 		private var _mapHeight:int;
 		private var _mapWidth:int;
 		private var _renderedMap:Bitmap;
 		private var _tileSize:int;
 		private var _tiles:Vector.<Vector.<Vector.<int>>>;
-
-		
 
 		public function get isLoaded():Boolean
 		{
@@ -61,11 +59,14 @@
 				_tiles[i] = stringTo2DVector(xmlMap.layer.data[i]);
 			}
 			var collisionObjects:XMLList = xmlMap.objectgroup.(@name == "collision")[0].object;
-			_collisionRects = new Vector.<Rectangle>(collisionObjects.length());
+			_collisionEntities = new Vector.<GameEntity>(collisionObjects.length());
 			for (var i = 0; i < collisionObjects.length(); i++)
 			{
 				var obj = collisionObjects[i];
-				_collisionRects[i] = new Rectangle(obj.@x, obj.@y, obj.@width, obj.@height);
+				_collisionEntities[i] = createFilledEntity(obj.@x, obj.@y,
+					obj.@width, obj.@height)
+				_fgTarget.addChild(_collisionEntities[i]);
+				_collisionEntities[i].showOutline();
 			}
 		}
 
@@ -115,11 +116,24 @@
 			_bgTarget.addChild(_renderedMap);
 		}
 
-		public function isCollidingWithEnvironment(rect:Rectangle):Boolean
+		private function createFilledEntity(x, y, width, height):GameEntity
+		{
+			var e = new GameEntity();
+			e.x = x;
+			e.y = y;
+			//This is needed because empty movie clips cannot have widths or
+			//heights.
+			e.graphics.beginFill(0, 0);
+			e.graphics.drawRect(0, 0, width, height);
+			e.graphics.endFill();
+			return e;
+		}
+
+		public function isCollidingWithEnvironment(e:GameEntity):Boolean
 		{
 			abortIfNotLoaded();
-			return !_collisionRects.every(function(r:Rectangle, i:int, v:Vector.<Rectangle>) {
-				return !r.intersects(rect);
+			return !_collisionEntities.every(function(r:GameEntity, i:int, v:Vector.<GameEntity>) {
+				return !e.isColliding(r);
 			});
 		}
 

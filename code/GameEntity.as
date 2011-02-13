@@ -57,6 +57,15 @@
 			}
 		}
 
+		/** Shows an outline around the entity for debugging purposes. */
+		public function showOutline():void
+		{
+			graphics.lineStyle(3, 0xFF8888);
+			graphics.beginFill(0, 0);
+			graphics.drawRect(0, 0, width, height);
+			graphics.endFill();
+		}
+
 		/** Returns true if entity is touching the passed-in entity. */
 		public function isColliding(e:GameEntity):Boolean
 		{

@@ -33,7 +33,9 @@
 			_cogTriggerTest = new CogTrigger(750, 180);
 			_canTest = new Can(800,475,200);
 			_background = new Background();
-			_map = new Map("res/testmap.tmx",_background.getBackground(),_background.getForeground());
+			_map = new Map("res/testmap.tmx",
+				_background.getBackground(),
+				_background.getForeground());
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_background.getBackground());
@@ -42,14 +44,11 @@
 			addChild(_reticle);
 			addChild(_background.getForeground()); 
 			
-			// BACKGROUND - Comment out to remove scrolling
-			
 			_background.addToBackground(_map);
 			_background.addToObjectLayer(_skeletunaTest);
 			_background.addToObjectLayer(_cogTriggerTest);
 			_background.addToObjectLayer(_canTest);
-			// BACKGROUND - Comment out to remove scrolling
-			
+
 		}
 		
 		public function getMap():Map{
@@ -125,52 +124,18 @@
 					
 				}
 			}
-			
-			// Collision Debug Test
-			//trace (_map.isCollidingWithEnvironment(_kitty.getRect(this)));
 		}
 
 		private function handleInput()
 		{
 			if (_key.isDown(Keyboard.A))
-			{
-				// BACKGROUND - Uncomment to remove scrolling
-				//_kitty.moveLeft();
-				// BACKGROUND - Uncomment to remove scrolling
-				
-				// BACKGROUND - Comment out to remove scrolling
 				_background.update("left", _kitty.SPEED);
-				// BACKGROUND - Comment out to remove scrolling
-				
-				_kitty.gotoAndStop("reg_kitty");
-			}
 
 			if (_key.isDown(Keyboard.D))
-			{
-				// BACKGROUND - Uncomment to remove scrolling
-				//_kitty.moveRight();
-				// BACKGROUND - Uncomment to remove scrolling
-				
-				// BACKGROUND - Comment out to remove scrolling
 				_background.update("right", _kitty.SPEED);
-				// BACKGROUND - Comment out to remove scrolling
-				
-				_kitty.gotoAndStop("reg_kitty");
-			}
 
 			if (_key.isDown(Keyboard.SPACE))
-			{
 				_kitty.jump();
-			}
-
-			if (_key.isDown(Keyboard.S))
-			{
-				_kitty.gotoAndStop("crouch_Kitty");
-			}
-			else
-			{
-				_kitty.gotoAndStop("reg_kitty");
-			}
 		}
 
 		private function onClick(e:MouseEvent):void
