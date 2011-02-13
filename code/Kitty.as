@@ -18,6 +18,7 @@
 		public var bulletManager:BulletManager;
 		private var game:Logic;
 		private var jumping:Boolean;
+		private var falling:Boolean;
 
 		public function Kitty(xCo:Number,yCo:Number,game:Logic)
 		{
@@ -42,21 +43,29 @@
 
 		public function jump()
 		{
+			
 			addEventListener(Event.ENTER_FRAME, jumpProper);
 		}
 
 		public function jumpProper(e:Event)
 		{
+			if(!falling)
+			{
 			jumping = true;
 			y -=  velocity;
 			velocity -=  ACCELERATION;
-			if (y > origY)
+			if(velocity <= 0){
+				jumping = false;
+				removeEventListener(Event.ENTER_FRAME, jumpProper);
+			}
+			}
+/*			if (y > origY)
 			{
 				y = origY;
 				removeEventListener(Event.ENTER_FRAME, jumpProper);
 				velocity = ORIGINAL_VELOCITY;
 				jumping = false;
-			}
+			}*/
 
 		}
 		
@@ -65,6 +74,12 @@
 				y+=velocity;
 				velocity += ACCELERATION;
 				trace("true");
+				falling = true;
+			}else{
+				falling = false
+				trace("false");
+				if(!jumping)
+					velocity = ORIGINAL_VELOCITY;
 			}
 		}
 
