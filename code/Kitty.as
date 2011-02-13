@@ -8,9 +8,9 @@
 
 	public class Kitty extends GameEntity
 	{
-		var ACCELERATION:Number = 4;
+		var ACCELERATION:Number = 3;
 		var SPEED:Number = 6;
-		var ORIGINAL_VELOCITY:Number = 50;
+		var ORIGINAL_VELOCITY:Number = 30;
 		var gravity:Number = 0.2;
 		var origY:Number;
 		var velocity:Number;
@@ -19,6 +19,7 @@
 		private var game:Logic;
 		private var jumping:Boolean;
 		private var falling:Boolean;
+		private var dead:Boolean;
 
 		public function Kitty(xCo:Number,yCo:Number,game:Logic)
 		{
@@ -29,7 +30,14 @@
 			bulletManager = new BulletManager(game,10,10,50);
 			this.game = game;
 			showOutline();
+			dead = false;
 		}
+		
+		public function isDead()
+		{
+			return dead;
+		}
+		
 
 		public function moveLeft()
 		{
@@ -51,21 +59,16 @@
 		{
 			if(!falling)
 			{
-			jumping = true;
-			y -=  velocity;
-			velocity -=  ACCELERATION;
-			if(velocity <= 0){
-				jumping = false;
+				jumping = true;
+				y -=  velocity;
+				velocity -=  ACCELERATION;
+				if(velocity <= 0){
+					jumping = false;
+					removeEventListener(Event.ENTER_FRAME, jumpProper);
+				}
+			}else {
 				removeEventListener(Event.ENTER_FRAME, jumpProper);
 			}
-			}
-/*			if (y > origY)
-			{
-				y = origY;
-				removeEventListener(Event.ENTER_FRAME, jumpProper);
-				velocity = ORIGINAL_VELOCITY;
-				jumping = false;
-			}*/
 
 		}
 		
@@ -73,11 +76,14 @@
 			if(!game.getMap().isCollidingWithEnvironment(this) && !jumping){
 				y+=velocity;
 				velocity += ACCELERATION;
-				trace("true");
 				falling = true;
+				if(y > stage.stageHeight+10){
+					trace("KITTY HAZ DIED!");
+					falling = false;
+					dead = true;
+				}
 			}else{
-				falling = false
-				trace("false");
+				falling = false;
 				if(!jumping)
 					velocity = ORIGINAL_VELOCITY;
 			}
