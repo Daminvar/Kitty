@@ -20,6 +20,8 @@
 		var _reticle:Reticle
 		var _skeletunaTest:Skeletuna;
 		var _background:Background;
+		var _cogTriggerTest:CogTrigger;
+		var _canTest:Can;
 
 		public function Logic()
 		{
@@ -28,6 +30,8 @@
 			_reticle = new Reticle();
 			_radius = 300;
 			_skeletunaTest = new Skeletuna(350,180,2,70,30);
+			_cogTriggerTest = new CogTrigger(750, 180);
+			_canTest = new Can(800,475,200);
 			_background = new Background();
 			_map = new Map("res/testmap.tmx",
 				_background.getBackground(),
@@ -42,6 +46,9 @@
 			
 			_background.addToBackground(_map);
 			_background.addToObjectLayer(_skeletunaTest);
+			_background.addToObjectLayer(_cogTriggerTest);
+			_background.addToObjectLayer(_canTest);
+
 		}
 		
 		public function getMap():Map{
@@ -104,6 +111,17 @@
 							_kitty.bulletManager.killBullet(b, i);
 						}
 					//}
+				}
+				
+				if (b.hitTestObject(_cogTriggerTest))
+				{
+					if (contains(_cogTriggerTest))
+					{
+						_cogTriggerTest.rotate();
+						_canTest.raise();
+						_kitty.bulletManager.killBullet(b, i);
+					}
+					
 				}
 			}
 		}
