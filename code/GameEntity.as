@@ -70,6 +70,7 @@
 		public function isColliding(e:GameEntity):Boolean
 		{
 			return this.hitTestObject(e);
+
 		}
 	}
 }
