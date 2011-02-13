@@ -7,7 +7,6 @@
 	{
 		public function Reticle()
 		{
-			Mouse.hide();
 		}
 	}
 }
