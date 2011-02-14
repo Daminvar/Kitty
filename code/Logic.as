@@ -57,8 +57,7 @@
 			}
 			handleInput();
 			_testLevel.update();
-			_kitty.bulletManager.update();
-			_kitty.fall();
+			_kitty.update();
 			updateReticle();
 			// hairball collision detection
 			for (var i:int = 0; i < _kitty.bulletManager.ActiveBullets.length; i++)
