@@ -33,7 +33,6 @@ package code
 		public function update():void
 		{
 			_entities.forEach(function(e:DynamicNPE, i:int, v:*) {
-				trace("updating");
 				e.update();
 			});
 		}

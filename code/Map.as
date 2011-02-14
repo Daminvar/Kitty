@@ -145,7 +145,8 @@
 			});
 		}
 		
-		public function getPixelWidth():Number{
+		public function getPixelWidth():Number
+		{
 			return _mapWidth * _tileSize;
 		}
 	}
