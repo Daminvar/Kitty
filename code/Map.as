@@ -29,6 +29,11 @@
 			return _isLoaded;
 		}
 
+		public function get dynamicEntities():Dictionary
+		{
+			return _dynamicEntities;
+		}
+
 		/** Loads the map specified by the given string. */
 		public function Map(loadedMap:XML, bgTarget:GameEntity, fgTarget:GameEntity)
 		{
@@ -67,9 +72,10 @@
 			_dynamicEntities = new Dictionary();
 			for (var k = 0; k < dynamicObjects.length(); k++)
 			{
-				var obj = dynamicObjects[k];
-				_dynamicEntities[obj.@name] = new Rectangle(obj.@x, obj.@y,
-					obj.@width, obj.@height);
+				var dynObj = dynamicObjects[k];
+				var keyName:String = dynObj.@name;
+				_dynamicEntities[keyName] = new Rectangle(dynObj.@x,
+					dynObj.@y, dynObj.@width, dynObj.@height);
 			}
 		}
 
