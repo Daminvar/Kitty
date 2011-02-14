@@ -68,9 +68,7 @@
 				background_mc.x += speed;
 				foreground_mc.x += speed;
 				objectLayer_mc.x += speed;
-			}else if(dir == "right" && background_mc.x - game.stage.stageWidth > -game._map.getPixelWidth()){
-				trace("MAP PIXEL WIDTH: " + game._map.getPixelWidth());
-				trace("BACKGROUND X WIDTH: " + (background_mc.x - game.stage.stageWidth));
+			}else if(dir == "right" && background_mc.x - game.stage.stageWidth > - game._testLevel.getMap().getPixelWidth()){
 				background_mc.x -= speed;
 				foreground_mc.x -= speed;
 				objectLayer_mc.x -= speed;
