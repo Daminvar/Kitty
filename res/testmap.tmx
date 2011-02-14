@@ -72,4 +72,7 @@
   <object x="2080" y="192" width="192" height="32"/>
   <object x="2400" y="384" width="96" height="32"/>
  </objectgroup>
+ <objectgroup name="entities" width="100" height="20">
+  <object name="skeletuna" x="256" y="192" width="128" height="64"/>
+ </objectgroup>
 </map>

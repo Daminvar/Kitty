@@ -4,6 +4,7 @@
 	import flash.events.*;
 	import flash.geom.*;
 	import flash.net.*;
+	import flash.utils.*;
 
 	public class Map extends GameEntity
 	{
@@ -14,6 +15,7 @@
 
 		private var _bgTarget:GameEntity;
 		private var _collisionEntities:Vector.<GameEntity>;
+		private var _dynamicEntities:Dictionary;
 		private var _fgTarget:GameEntity;
 		private var _isLoaded:Boolean;
 		private var _mapHeight:int;
@@ -28,22 +30,15 @@
 		}
 
 		/** Loads the map specified by the given string. */
-		public function Map(mapFile:String, bgTarget:GameEntity, fgTarget:GameEntity)
+		public function Map(loadedMap:XML, bgTarget:GameEntity, fgTarget:GameEntity)
 		{
-			_isLoaded = false;
-			//Check whether the _tileset var needs to be initialized.
+			//Load the tileset if it hasn't been loaded.
 			if (_tileset == null)
 				_tileset = new _Tileset();
 			_bgTarget = bgTarget;
 			_fgTarget = fgTarget;
-			var request = new URLRequest(mapFile);
-			var loader = new URLLoader(request);
-			loader.addEventListener(Event.COMPLETE, function(e:Event) {
-				var loadedMap = new XML(e.target.data);
-				parseMap(loadedMap);
-				renderMap();
-				_isLoaded = true;
-			});
+			parseMap(loadedMap);
+			renderMap();
 		}
 
 		private function parseMap(xmlMap:XML):void
@@ -60,13 +55,21 @@
 			}
 			var collisionObjects:XMLList = xmlMap.objectgroup.(@name == "collision")[0].object;
 			_collisionEntities = new Vector.<GameEntity>(collisionObjects.length());
-			for (var i = 0; i < collisionObjects.length(); i++)
+			for (var j = 0; j < collisionObjects.length(); j++)
 			{
-				var obj = collisionObjects[i];
-				_collisionEntities[i] = createFilledEntity(obj.@x, obj.@y,
+				var obj = collisionObjects[j];
+				_collisionEntities[j] = createFilledEntity(obj.@x, obj.@y,
 					obj.@width, obj.@height)
-				_fgTarget.addChild(_collisionEntities[i]);
-				_collisionEntities[i].showOutline();
+				_fgTarget.addChild(_collisionEntities[j]);
+				_collisionEntities[j].showOutline();
+			}
+			var dynamicObjects:XMLList = xmlMap.objectgroup.(@name == "entities")[0].object;
+			_dynamicEntities = new Dictionary();
+			for (var k = 0; k < dynamicObjects.length(); k++)
+			{
+				var obj = dynamicObjects[k];
+				_dynamicEntities[obj.@name] = new Rectangle(obj.@x, obj.@y,
+					obj.@width, obj.@height);
 			}
 		}
 
@@ -131,16 +134,9 @@
 
 		public function isCollidingWithEnvironment(e:GameEntity):Boolean
 		{
-			abortIfNotLoaded();
 			return !_collisionEntities.every(function(r:GameEntity, i:int, v:Vector.<GameEntity>) {
 				return !e.isColliding(r);
 			});
-		}
-
-		private function abortIfNotLoaded():void
-		{
-			if (_isLoaded == false)
-				throw new Error("The map hasn't finished loading.");
 		}
 		
 		public function getPixelWidth():Number{
