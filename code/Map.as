@@ -144,5 +144,9 @@
 				return !e.isColliding(r);
 			});
 		}
+		
+		public function getPixelWidth():Number{
+			return _mapWidth * _tileSize;
+		}
 	}
 }

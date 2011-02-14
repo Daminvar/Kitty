@@ -10,15 +10,15 @@
 		private var background_mc:GameEntity;
 		private var foreground_mc:GameEntity;
 		private var objectLayer_mc:GameEntity;
-		private var ORIGINAL_X:Number;
-		private var ORIGINAL_Y:Number;
+		private var game:Logic;
 		
-		public function Background() {
+		public function Background(game:Logic) {
 			// constructor code
 			objectArray = new Array();
 			background_mc = new GameEntity();
 			foreground_mc = new GameEntity();
 			objectLayer_mc = new GameEntity();
+			this.game = game;
 		}
 		
 		public function getBackground(){
@@ -68,7 +68,7 @@
 				background_mc.x += speed;
 				foreground_mc.x += speed;
 				objectLayer_mc.x += speed;
-			}else if(dir == "right"){
+			}else if(dir == "right" && background_mc.x - game.stage.stageWidth > - game._testLevel.getMap().getPixelWidth()){
 				background_mc.x -= speed;
 				foreground_mc.x -= speed;
 				objectLayer_mc.x -= speed;

@@ -28,7 +28,7 @@
 			_key = new KeyPoll(this.stage);
 			_reticle = new Reticle();
 			_radius = 300;
-			_background = new Background();
+			_background = new Background(this);
 			_testLevel = new TestLevel(
 				_background.getBackground(),
 				_background.getObjectLayer(),
@@ -107,11 +107,18 @@
 		private function handleInput()
 		{
 			if (_key.isDown(Keyboard.A))
-				_background.update("left", _kitty.SPEED);
+				if(_kitty.canLeft()){
+					_kitty.moveLeft();
+				} else{
+					_background.update("left", _kitty.SPEED);
+				}
 
 			if (_key.isDown(Keyboard.D))
-				_background.update("right", _kitty.SPEED);
-
+				if(_kitty.canRight()){
+					_kitty.moveRight();
+				}else {
+					_background.update("right", _kitty.SPEED);
+				}
 			if (_key.isDown(Keyboard.SPACE))
 				_kitty.jump();
 		}
