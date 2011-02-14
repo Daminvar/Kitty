@@ -20,6 +20,11 @@
 		private var jumping:Boolean;
 		private var falling:Boolean;
 		private var dead:Boolean;
+		private var moveBuffer:Number;
+		private var maxMoveBuffer:Number;
+		var canMove:Boolean;
+		var canMoveLeft:Number;
+		var canMoveRight:Number;
 
 		public function Kitty(xCo:Number,yCo:Number,game:Logic)
 		{
@@ -31,22 +36,49 @@
 			this.game = game;
 			showOutline();
 			dead = false;
+			moveBuffer = 0;
+			canMove = true;
+			canMoveLeft =0;
+			canMoveRight = 0;
+			maxMoveBuffer = 64;
 		}
-		
+	
 		public function isDead()
 		{
 			return dead;
 		}
 		
+		public function canLeft():Boolean{
+			if(canMoveLeft > maxMoveBuffer)
+				return false;
+			else
+				return true;
+			
+		}
+		public function canRight():Boolean{
+			if(canMoveRight > maxMoveBuffer)
+				return false;
+			else
+				return true;
+			
+		}
+		
 
 		public function moveLeft()
 		{
-			x -=  SPEED;
+			
+				x -=  SPEED;
+				canMoveLeft += SPEED;
+				canMoveRight -= SPEED;
+			
+			
 		}
 
 		public function moveRight()
 		{
-			x +=  SPEED;
+				x +=  SPEED;
+				canMoveLeft -= SPEED;
+				canMoveRight += SPEED;
 		}
 
 		public function jump()

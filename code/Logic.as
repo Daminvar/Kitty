@@ -32,7 +32,7 @@
 			_skeletunaTest = new Skeletuna(350,180,2,70,30);
 			_cogTriggerTest = new CogTrigger(2550, 165);
 			_canTest = new Can(2800,475,200);
-			_background = new Background();
+			_background = new Background(this);
 			_map = new Map("res/testmap.tmx",
 				_background.getBackground(),
 				_background.getForeground());
@@ -139,11 +139,18 @@
 		private function handleInput()
 		{
 			if (_key.isDown(Keyboard.A))
-				_background.update("left", _kitty.SPEED);
+				if(_kitty.canLeft()){
+					_kitty.moveLeft();
+				} else{
+					_background.update("left", _kitty.SPEED);
+				}
 
 			if (_key.isDown(Keyboard.D))
-				_background.update("right", _kitty.SPEED);
-
+				if(_kitty.canRight()){
+					_kitty.moveRight();
+				}else {
+					_background.update("right", _kitty.SPEED);
+				}
 			if (_key.isDown(Keyboard.SPACE))
 				_kitty.jump();
 		}

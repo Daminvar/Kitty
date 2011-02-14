@@ -142,5 +142,9 @@
 			if (_isLoaded == false)
 				throw new Error("The map hasn't finished loading.");
 		}
+		
+		public function getPixelWidth():Number{
+			return _mapWidth * _tileSize;
+		}
 	}
 }
