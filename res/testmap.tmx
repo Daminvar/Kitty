@@ -76,5 +76,9 @@
   <object name="skeletuna" x="256" y="192" width="128" height="64"/>
   <object name="skeletuna" x="416" y="512" width="416" height="64"/>
   <object name="saw" x="1120" y="480" width="96" height="96"/>
+  <object name="skeletuna" x="1024" y="192" width="160" height="64"/>
+  <object name="saw" x="1792" y="512" width="32" height="32"/>
+  <object name="saw" x="1664" y="512" width="128" height="128"/>
+  <object name="skeletuna" x="1472" y="384" width="128" height="64"/>
  </objectgroup>
 </map>
