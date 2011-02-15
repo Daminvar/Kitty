@@ -42,10 +42,11 @@
 			addChild(_background.getForeground()); 
 		}
 		
-		public function getMap():Map
+		public function getLevel():Level
 		{
-			return _testLevel.getMap();
+			return _testLevel;
 		}
+
 		public function update(e:Event)
 		{
 			if(_kitty.isDead())

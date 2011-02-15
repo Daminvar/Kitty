@@ -41,6 +41,14 @@ package code
 			return _map;
 		}
 
+		public function isCollidingWithEnvironment(e:GameEntity)
+		{
+			return _map.isCollidingWithEnvironment(e) || !_entities.every(
+				function(d:DynamicNPE, i:int, v:*) {
+				return !d.isColliding(e);
+			});
+		}
+
 		public function update():void
 		{
 			_entities.forEach(function(e:DynamicNPE, i:int, v:*) {

@@ -47,5 +47,10 @@
 			if (h.isColliding(this))
 				_level.removeEntity(this);
 		}
+
+		public override function handleCollision(k:Kitty):void
+		{
+			k.kill();
+		}
 	}
 }

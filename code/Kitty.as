@@ -64,16 +64,37 @@
 
 		public function moveLeft():void
 		{
+			if (!game.getLevel().isCollidingWithEnvironment(this))
+			{
 				x -=  SPEED;
 				canMoveLeft += SPEED;
 				canMoveRight -= SPEED;
+				
+				while(game.getLevel().isCollidingWithEnvironment(this))
+				{
+					x +=  1;
+					canMoveLeft -= 1;
+					canMoveRight += 1;
+				}
+			}
 		}
 
 		public function moveRight():void
 		{
+			if (!game.getLevel().isCollidingWithEnvironment(this))
+			{
 				x +=  SPEED;
 				canMoveLeft -= SPEED;
 				canMoveRight += SPEED;
+				
+				while(game.getLevel().isCollidingWithEnvironment(this))
+				{
+					x -=  1;
+					canMoveLeft += 1;
+					canMoveRight -= 1;
+				}
+			}
+
 		}
 
 		public function jump()
@@ -84,11 +105,17 @@
 
 		private function jumpProper(e:Event)
 		{
-			if(!falling)
+
+			if (!game.getLevel().isCollidingWithEnvironment(this) && !falling)
 			{
 				jumping = true;
 				y -=  velocity;
 				velocity -=  ACCELERATION;
+				while(game.getLevel().isCollidingWithEnvironment(this))
+				{
+					y += 1;
+					jumping = false;
+				}
 				if(velocity <= 0)
 				{
 					jumping = false;
@@ -100,6 +127,11 @@
 				removeEventListener(Event.ENTER_FRAME, jumpProper);
 			}
 
+		}
+		
+		public function kill():void
+		{
+			dead = true;
 		}
 
 		public function fireHairball():void
@@ -128,15 +160,30 @@
 
 		private function fall():void
 		{
-			if (!game.getMap().isCollidingWithEnvironment(this) && !jumping)
+			var colliding = game.getLevel().isCollidingWithEnvironment(this);
+			if (colliding)
 			{
+				for each(var d:DynamicNPE in game.getLevel().entities)
+				{
+					if (d.isColliding(this))
+						d.handleCollision(this);
+				}
+			}
+			if (!colliding && !jumping)
+			{
+				falling = true;
 				y+=velocity;
+				while(game.getLevel().isCollidingWithEnvironment(this))
+				{
+					y -= 1;
+					falling = false;
+				}
+				
 				if(velocity < 30)				//Velocity cap for collision
 					velocity += ACCELERATION;
-				falling = true;
+				
 				if (y > stage.stageHeight+10)
 				{
-					trace("KITTY HAZ DIED!");
 					falling = false;
 					dead = true;
 				}
@@ -151,15 +198,7 @@
 
 		public override function isColliding(e:GameEntity):Boolean
 		{
-			if(this.hitTestObject(e)){
-				if((this.y + this.height) > (e.y + 35)){	
-					return false;
-				}else{
-					return true;
-				}
-			}else{
-				return false;
-			}
+			return this.hitTestObject(e);
 		}
 	}
 }
