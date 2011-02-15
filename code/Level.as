@@ -31,8 +31,9 @@ package code
 		private function initEntities():void
 		{
 			_entities = new Vector.<DynamicNPE>();
-			for (var key:String in _map.dynamicEntities)
-				register(key, _map.dynamicEntities[key]);
+			for (var i = 0; i < _map.dynamicEntities.length; i++)
+				register(_map.dynamicEntities[i][0],
+					_map.dynamicEntities[i][1]);
 		}
 
 		public function getMap():Map

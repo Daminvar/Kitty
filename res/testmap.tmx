@@ -74,5 +74,7 @@
  </objectgroup>
  <objectgroup name="entities" width="100" height="20">
   <object name="skeletuna" x="256" y="192" width="128" height="64"/>
+  <object name="skeletuna" x="416" y="512" width="416" height="64"/>
+  <object name="saw" x="1120" y="480" width="96" height="96"/>
  </objectgroup>
 </map>

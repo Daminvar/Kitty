@@ -15,7 +15,7 @@
 
 		private var _bgTarget:GameEntity;
 		private var _collisionEntities:Vector.<GameEntity>;
-		private var _dynamicEntities:Dictionary;
+		private var _dynamicEntities:Vector.<Array>;
 		private var _fgTarget:GameEntity;
 		private var _isLoaded:Boolean;
 		private var _mapHeight:int;
@@ -29,7 +29,7 @@
 			return _isLoaded;
 		}
 
-		public function get dynamicEntities():Dictionary
+		public function get dynamicEntities():Vector.<Array>
 		{
 			return _dynamicEntities;
 		}
@@ -69,13 +69,14 @@
 				_collisionEntities[j].showOutline();
 			}
 			var dynamicObjects:XMLList = xmlMap.objectgroup.(@name == "entities")[0].object;
-			_dynamicEntities = new Dictionary();
+			_dynamicEntities = new Vector.<Array>();
 			for (var k = 0; k < dynamicObjects.length(); k++)
 			{
 				var dynObj = dynamicObjects[k];
 				var keyName:String = dynObj.@name;
-				_dynamicEntities[keyName] = new Rectangle(dynObj.@x,
-					dynObj.@y, dynObj.@width, dynObj.@height);
+				var arr = new Array(keyName, new Rectangle(dynObj.@x,
+					dynObj.@y, dynObj.@width, dynObj.@height));
+				_dynamicEntities.push(arr);
 			}
 		}
 
