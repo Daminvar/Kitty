@@ -43,38 +43,29 @@
 			maxMoveBuffer = 64;
 		}
 		
-		public function isDead()
+		public function isDead():Boolean
 		{
 			return dead;
 		}
 		
-		public function canLeft():Boolean{
-			if(canMoveLeft > maxMoveBuffer)
-				return false;
-			else
-				return true;
-			
-		}
-		public function canRight():Boolean{
-			if(canMoveRight > maxMoveBuffer)
-				return false;
-			else
-				return true;
-			
-		}
-		
-
-		public function moveLeft()
+		public function canLeft():Boolean
 		{
-			
+			return canMoveLeft <= maxMoveBuffer;
+		}
+
+		public function canRight():Boolean
+		{
+			return canMoveRight <= maxMoveBuffer;
+		}
+
+		public function moveLeft():void
+		{
 				x -=  SPEED;
 				canMoveLeft += SPEED;
 				canMoveRight -= SPEED;
-			
-			
 		}
 
-		public function moveRight()
+		public function moveRight():void
 		{
 				x +=  SPEED;
 				canMoveLeft -= SPEED;
@@ -94,28 +85,42 @@
 				jumping = true;
 				y -=  velocity;
 				velocity -=  ACCELERATION;
-				if(velocity <= 0){
+				if(velocity <= 0)
+				{
 					jumping = false;
 					removeEventListener(Event.ENTER_FRAME, jumpProper);
 				}
-			}else {
+			}
+			else
+			{
 				removeEventListener(Event.ENTER_FRAME, jumpProper);
 			}
 
 		}
 		
-		public function fall(){
-			if(!game.getMap().isCollidingWithEnvironment(this) && !jumping){
+		public function update():void
+		{
+			fall();
+			bulletManager.update();
+		}
+
+		private function fall():void
+		{
+			if (!game.getMap().isCollidingWithEnvironment(this) && !jumping)
+			{
 				y+=velocity;
 				if(velocity < 30)				//Velocity cap for collision
 					velocity += ACCELERATION;
 				falling = true;
-				if(y > stage.stageHeight+10){
+				if (y > stage.stageHeight+10)
+				{
 					trace("KITTY HAZ DIED!");
 					falling = false;
 					dead = true;
 				}
-			}else{
+			}
+			else
+			{
 				falling = false;
 				if(!jumping)
 					velocity = ORIGINAL_VELOCITY;

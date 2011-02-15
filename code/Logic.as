@@ -56,8 +56,18 @@
 				addChild(_kitty);
 			}
 			handleInput();
-			_kitty.bulletManager.update();
-			_kitty.fall();
+			_testLevel.update();
+			_kitty.update();
+			updateReticle();
+			// hairball collision detection
+			for (var i:int = 0; i < _kitty.bulletManager.ActiveBullets.length; i++)
+			{
+				var b:Hairball = _kitty.bulletManager.ActiveBullets[i] as Hairball;
+			}
+		}
+
+		private function updateReticle():void
+		{
 			var mousePnt = localToGlobal(new Point(mouseX,mouseY));
 			var dx:Number = mousePnt.x - _kitty.x;
 			var dy:Number = mousePnt.y - _kitty.y;
@@ -90,11 +100,6 @@
 			{
 				_reticle.x = (Math.cos(angle)*_radius)+ _kitty.x;
 				_reticle.y = (Math.sin(angle)*_radius) + _kitty.y;
-			}
-			// hairball collision detection
-			for (var i:int = 0; i < _kitty.bulletManager.ActiveBullets.length; i++)
-			{
-				var b:Hairball = _kitty.bulletManager.ActiveBullets[i] as Hairball;
 			}
 		}
 
