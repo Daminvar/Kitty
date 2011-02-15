@@ -70,9 +70,10 @@
 		{
 			//return this.hitTestObject(e);
 			if(this.hitTestObject(e)){
-				if((this.y + this.height) > (e.y + 15)){	
+				if((this.y + this.height) > (e.y + 35)){	
 					return false;
 				}else{
+					this.y
 					return true;
 				}
 			}else{
