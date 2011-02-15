@@ -3,6 +3,7 @@ package code.levels
 	import flash.geom.*;
 
 	import code.*;
+	import code.entities.*;
 
 	public class TestLevel extends Level
 	{
@@ -23,6 +24,9 @@ package code.levels
 			if (entityName == "skeletuna")
 				addToEntityVectorAndStage(new Skeletuna(this, rect.x, rect.y,
 					rect.width));
+			if (entityName == "saw")
+				addToEntityVectorAndStage(new Saw(rect.x, rect.y, rect.width,
+					rect.height));
 		}
 	}
 }
