@@ -41,6 +41,10 @@
 			canMoveLeft =0;
 			canMoveRight = 0;
 			maxMoveBuffer = 64;
+
+			onRemoved(function() {
+				bulletManager.killAllBullets();
+			});
 		}
 		
 		public function isDead():Boolean

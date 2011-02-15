@@ -42,10 +42,8 @@
 				bullet.fire(firingPosition, travelRotation);
 				activeBullets.push(bullet);
 				game.addChild(bullet);
-
 				return true;
 			}
-
 			return false;
 		}
 
@@ -61,6 +59,14 @@
 					killBullet(bullet, i);
 					i--;
 				}
+			}
+		}
+
+		public function killAllBullets():void
+		{
+			for (var i = 0; i < activeBullets.length; i++)
+			{
+				killBullet(activeBullets[i], i);
 			}
 		}
 
