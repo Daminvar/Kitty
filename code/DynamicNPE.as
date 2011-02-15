@@ -7,5 +7,10 @@ package code
 		{
 			throw new Error("This method must be overridden.");
 		}
+
+		public function handleHairball(h:Hairball):void
+		{
+			return;
+		}
 	}
 }

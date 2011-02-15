@@ -21,7 +21,8 @@ package code.levels
 		protected override function register(entityName:String, rect:Rectangle):void
 		{
 			if (entityName == "skeletuna")
-				addToEntityVectorAndStage(new Skeletuna(rect.x, rect.y, rect.width));
+				addToEntityVectorAndStage(new Skeletuna(this, rect.x, rect.y,
+					rect.width));
 		}
 	}
 }

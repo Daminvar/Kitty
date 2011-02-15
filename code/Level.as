@@ -10,6 +10,11 @@ package code
 		protected var _entities:Vector.<DynamicNPE>;
 		protected var _objectLayer:GameEntity;
 
+		public function get entities():Vector.<DynamicNPE>
+		{
+			return _entities;
+		}
+
 		public function Level(LevelData:Class,
 			backgroundLayer:GameEntity,
 			objectLayer:GameEntity,
@@ -46,6 +51,13 @@ package code
 		{
 			_entities.push(e);
 			_objectLayer.addChild(e);
+		}
+
+		public function removeEntity(e:DynamicNPE):void
+		{
+			_entities = _entities.filter(function(v:DynamicNPE, i:int, vec:*) {
+				return v != e;
+			});
 		}
 	}
 }

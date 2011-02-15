@@ -63,6 +63,9 @@
 			for (var i:int = 0; i < _kitty.bulletManager.ActiveBullets.length; i++)
 			{
 				var b:Hairball = _kitty.bulletManager.ActiveBullets[i] as Hairball;
+				_testLevel.entities.forEach(function(e:DynamicNPE, i:int, vec:*) {
+					e.handleHairball(b);
+				});
 			}
 		}
 

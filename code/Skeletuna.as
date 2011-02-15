@@ -7,14 +7,17 @@
 
 		private var _facing:String;
 		private var _initialX:Number;
+		private var _level:Level;
 		private var _patrolWidth:Number;
 		
-		public function Skeletuna(xInit:Number, yInit:Number, patrolWidth:Number)
+		public function Skeletuna(lvl:Level, xInit:Number, yInit:Number,
+			patrolWidth:Number)
 		{
 			x = _initialX = xInit;
 			y = yInit;
-			_patrolWidth = patrolWidth;
 			_facing = "right";
+			_level = lvl;
+			_patrolWidth = patrolWidth;
 		}
 				
 		public override function update():void
@@ -33,6 +36,15 @@
 			{
 				_facing = "left";
 				gotoAndStop("left");
+			}
+		}
+
+		public override function handleHairball(h:Hairball):void
+		{
+			if (h.isColliding(this))
+			{
+				(parent as MovieClip).removeChild(this);
+				_level.removeEntity(this);
 			}
 		}
 	}
