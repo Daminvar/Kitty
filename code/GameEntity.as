@@ -10,7 +10,6 @@
 	public class GameEntity extends MovieClip
 	{
 		private var handlers:Dictionary;
-
 		public function GameEntity()
 		{
 			handlers = new Dictionary();
@@ -69,8 +68,17 @@
 		/** Returns true if entity is touching the passed-in entity. */
 		public function isColliding(e:GameEntity):Boolean
 		{
-			return this.hitTestObject(e);
-
+			//return this.hitTestObject(e);
+			if(this.hitTestObject(e)){
+				if((this.y + this.height) > (e.y + 15)){	
+					return false;
+				}else{
+					return true;
+				}
+			}else{
+				return false;
+			}
+			
 		}
 	}
 }

@@ -8,9 +8,9 @@
 
 	public class Kitty extends GameEntity
 	{
-		var ACCELERATION:Number = 3;
-		var SPEED:Number = 6;
-		var ORIGINAL_VELOCITY:Number = 30;
+		var ACCELERATION:Number = 2.5;
+		var SPEED:Number = 5;
+		var ORIGINAL_VELOCITY:Number = 25;
 		var gravity:Number = 0.2;
 		var origY:Number;
 		var velocity:Number;
@@ -42,7 +42,7 @@
 			canMoveRight = 0;
 			maxMoveBuffer = 64;
 		}
-	
+		
 		public function isDead()
 		{
 			return dead;
@@ -107,7 +107,8 @@
 		public function fall(){
 			if(!game.getMap().isCollidingWithEnvironment(this) && !jumping){
 				y+=velocity;
-				velocity += ACCELERATION;
+				if(velocity < 30)				//Velocity cap for collision
+					velocity += ACCELERATION;
 				falling = true;
 				if(y > stage.stageHeight+10){
 					trace("KITTY HAZ DIED!");
