@@ -64,16 +64,37 @@
 
 		public function moveLeft():void
 		{
+			if (!game.getLevel().isCollidingWithEnvironment(this))
+			{
 				x -=  SPEED;
 				canMoveLeft += SPEED;
 				canMoveRight -= SPEED;
+				
+				while(game.getLevel().isCollidingWithEnvironment(this))
+				{
+					x +=  1;
+					canMoveLeft -= 1;
+					canMoveRight += 1;
+				}
+			}
 		}
 
 		public function moveRight():void
 		{
+			if (!game.getLevel().isCollidingWithEnvironment(this))
+			{
 				x +=  SPEED;
 				canMoveLeft -= SPEED;
 				canMoveRight += SPEED;
+				
+				while(game.getLevel().isCollidingWithEnvironment(this))
+				{
+					x -=  1;
+					canMoveLeft += 1;
+					canMoveRight -= 1;
+				}
+			}
+
 		}
 
 		public function jump()
