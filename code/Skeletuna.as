@@ -3,7 +3,7 @@
 	
 	public class Skeletuna extends DynamicNPE
 	{
-		private const MOVE_SPEED = 10;
+		private const MOVE_SPEED = 6;
 
 		private var _facing:String;
 		private var _initialX:Number;
@@ -29,7 +29,7 @@
 				_facing = "right";
 				gotoAndStop("right");
 			}
-			else if(x > _initialX + _patrolWidth)
+			else if(x + width > _initialX + _patrolWidth)
 			{
 				_facing = "left";
 				gotoAndStop("left");
