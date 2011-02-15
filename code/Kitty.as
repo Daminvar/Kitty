@@ -128,15 +128,22 @@
 
 		private function fall():void
 		{
+	
 			if (!game.getMap().isCollidingWithEnvironment(this) && !jumping)
 			{
+				falling = true;
 				y+=velocity;
+				while(game.getMap().isCollidingWithEnvironment(this))
+				{
+					y -= 1;
+					falling = false;
+				}
+				
 				if(velocity < 30)				//Velocity cap for collision
 					velocity += ACCELERATION;
-				falling = true;
+				
 				if (y > stage.stageHeight+10)
 				{
-					trace("KITTY HAZ DIED!");
 					falling = false;
 					dead = true;
 				}
@@ -151,15 +158,7 @@
 
 		public override function isColliding(e:GameEntity):Boolean
 		{
-			if(this.hitTestObject(e)){
-				if((this.y + this.height) > (e.y + 35)){	
-					return false;
-				}else{
-					return true;
-				}
-			}else{
-				return false;
-			}
+			return this.hitTestObject(e);
 		}
 	}
 }
