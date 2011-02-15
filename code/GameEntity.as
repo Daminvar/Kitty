@@ -68,17 +68,7 @@
 		/** Returns true if entity is touching the passed-in entity. */
 		public function isColliding(e:GameEntity):Boolean
 		{
-			//return this.hitTestObject(e);
-			if(this.hitTestObject(e)){
-				if((this.y + this.height) > (e.y + 35)){	
-					return false;
-				}else{
-					return true;
-				}
-			}else{
-				return false;
-			}
-			
+			return this.hitTestObject(e);
 		}
 	}
 }

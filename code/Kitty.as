@@ -101,6 +101,24 @@
 			}
 
 		}
+
+		public function fireHairball():void
+		{
+			cooldown--;
+			var mousePnt = localToGlobal(new Point(mouseX,mouseY));
+			var dx:Number = mousePnt.x - x;
+			var dy:Number = mousePnt.y - y;
+			var angle:Number = Math.atan2(dy,dx) * 180 / Math.PI;
+			trace(angle);
+			if (bulletManager.fireBullet(new Point(this.x,this.y),angle))
+			{
+				cooldown = cooldown;
+			}
+		}
+
+		public function fireSpecial():void
+		{
+		}
 		
 		public function update():void
 		{
@@ -131,17 +149,16 @@
 			}
 		}
 
-		public function fire():void
+		public override function isColliding(e:GameEntity):Boolean
 		{
-			cooldown--;
-			var mousePnt = localToGlobal(new Point(mouseX,mouseY));
-			var dx:Number = mousePnt.x - x;
-			var dy:Number = mousePnt.y - y;
-			var angle:Number = Math.atan2(dy,dx) * 180 / Math.PI;
-			trace(angle);
-			if (bulletManager.fireBullet(new Point(this.x,this.y),angle))
-			{
-				cooldown = cooldown;
+			if(this.hitTestObject(e)){
+				if((this.y + this.height) > (e.y + 35)){	
+					return false;
+				}else{
+					return true;
+				}
+			}else{
+				return false;
 			}
 		}
 	}

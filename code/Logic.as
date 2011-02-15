@@ -124,7 +124,7 @@
 
 		private function onClick(e:MouseEvent):void
 		{
-			_kitty.fire();
+			_kitty.fireHairball();
 		}
 		
 	}
