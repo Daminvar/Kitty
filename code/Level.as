@@ -20,12 +20,17 @@ package code
 			objectLayer:GameEntity,
 			foregroundLayer:GameEntity)
 		{
-			_entities = new Vector.<DynamicNPE>();
 			_objectLayer = objectLayer;
 			var file = new LevelData();
 			var str = file.readUTFBytes(file.length);
 			var levelXML = new XML(str);
 			_map = new Map(levelXML, backgroundLayer, foregroundLayer);
+			initEntities();
+		}
+
+		private function initEntities():void
+		{
+			_entities = new Vector.<DynamicNPE>();
 			for (var key:String in _map.dynamicEntities)
 				register(key, _map.dynamicEntities[key]);
 		}
@@ -40,6 +45,11 @@ package code
 			_entities.forEach(function(e:DynamicNPE, i:int, v:*) {
 				e.update();
 			});
+		}
+
+		public function reset():void
+		{
+			initEntities();
 		}
 
 		protected function register(entityName:String, rect:Rectangle):void

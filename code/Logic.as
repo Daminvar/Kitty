@@ -51,6 +51,7 @@
 			if(_kitty.isDead())
 			{
 				_background.reset();
+				_testLevel.reset();
 				removeChild(_kitty);
 				_kitty = new Kitty(100,300,this);
 				addChild(_kitty);
