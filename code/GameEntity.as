@@ -73,7 +73,6 @@
 				if((this.y + this.height) > (e.y + 35)){	
 					return false;
 				}else{
-					this.y
 					return true;
 				}
 			}else{
