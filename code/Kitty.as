@@ -51,6 +51,11 @@
 		{
 			return dead;
 		}
+
+		public function kill():void
+		{
+			dead = true;
+		}
 		
 		public function canLeft():Boolean
 		{
@@ -128,12 +133,20 @@
 
 		private function fall():void
 		{
-	
-			if (!game.getMap().isCollidingWithEnvironment(this) && !jumping)
+			var colliding = game.getLevel().isCollidingWithEnvironment(this);
+			if (colliding)
+			{
+				for each(var d:DynamicNPE in game.getLevel().entities)
+				{
+					if (d.isColliding(this))
+						d.handleCollision(this);
+				}
+			}
+			if (!colliding && !jumping)
 			{
 				falling = true;
 				y+=velocity;
-				while(game.getMap().isCollidingWithEnvironment(this))
+				while(game.getLevel().isCollidingWithEnvironment(this))
 				{
 					y -= 1;
 					falling = false;

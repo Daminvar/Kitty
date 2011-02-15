@@ -12,5 +12,10 @@ package code
 		{
 			return;
 		}
+
+		public function handleCollision(k:Kitty):void
+		{
+			return;
+		}
 	}
 }
