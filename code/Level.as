@@ -50,6 +50,9 @@ package code
 
 		public function reset():void
 		{
+			_entities.forEach(function(e:DynamicNPE, i:int, v:*) {
+				_objectLayer.removeChild(e);
+			});
 			initEntities();
 		}
 
@@ -66,6 +69,7 @@ package code
 
 		public function removeEntity(e:DynamicNPE):void
 		{
+			_objectLayer.removeChild(e);
 			_entities = _entities.filter(function(v:DynamicNPE, i:int, vec:*) {
 				return v != e;
 			});

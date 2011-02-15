@@ -45,10 +45,7 @@
 		public override function handleHairball(h:Hairball):void
 		{
 			if (h.isColliding(this))
-			{
-				(parent as MovieClip).removeChild(this);
 				_level.removeEntity(this);
-			}
 		}
 	}
 }
