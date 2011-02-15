@@ -84,11 +84,17 @@
 
 		private function jumpProper(e:Event)
 		{
-			if(!falling)
+
+			if (!game.getMap().isCollidingWithEnvironment(this) && !falling)
 			{
 				jumping = true;
 				y -=  velocity;
 				velocity -=  ACCELERATION;
+				while(game.getMap().isCollidingWithEnvironment(this))
+				{
+					y += 1;
+					jumping = false;
+				}
 				if(velocity <= 0)
 				{
 					jumping = false;
