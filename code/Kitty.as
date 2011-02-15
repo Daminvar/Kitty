@@ -82,7 +82,7 @@
 			addEventListener(Event.ENTER_FRAME, jumpProper);
 		}
 
-		public function jumpProper(e:Event)
+		private function jumpProper(e:Event)
 		{
 			if(!falling)
 			{
