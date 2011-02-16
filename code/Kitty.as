@@ -66,6 +66,15 @@
 		{
 			return _canMoveRight <= _maxMoveBuffer;
 		}
+		
+		private function checkNPECollision():void
+		{
+			for each(var d:DynamicNPE in _game.getLevel().entities)
+			{
+				if (d.isColliding(this))
+					d.handleCollision(this);
+			}
+		}
 
 		public function moveLeft():void
 		{
@@ -170,25 +179,21 @@
 		{
 			fall();
 			_bulletManager.update();
+			checkNPECollision();
 		}
 
 		private function fall():void
 		{
-			var colliding = _game.getLevel().isCollidingWithEnvironment(this);
-			if (colliding)
-			{
-				for each(var d:DynamicNPE in _game.getLevel().entities)
-				{
-					if (d.isColliding(this))
-						d.handleCollision(this);
-				}
-			}
-			if (!colliding && !_jumping)
+			if (!_game.getLevel().isCollidingWithEnvironment(this) && !_jumping)
 			{
 				_falling = true;
 				y += _velocity;
 				while (_game.getLevel().isCollidingWithEnvironment(this))
 				{
+					if (_game.getLevel().isCollidingWithEnvironment(this))
+					{
+						checkNPECollision();
+					}
 					y -= 1;
 					_falling = false;
 				}
