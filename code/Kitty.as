@@ -46,10 +46,7 @@
 			_canMoveLeft =0;
 			_canMoveRight = 0;
 			_maxMoveBuffer = 64;
-
-			//For testing purposes only
-			_SpecialHairball = FlamingHairball;
-
+			
 			onRemoved(function() {
 				_bulletManager.killAllBullets();
 			});
