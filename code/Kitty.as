@@ -36,7 +36,7 @@
 			x = xPos;
 			y = yPos;
 			_velocity = ORIGINAL_VELOCITY;
-			_bulletManager = new BulletManager(game,10,10,50);
+			_bulletManager = new BulletManager(game);
 			_game = game;
 			showOutline();
 			_dead = false;
@@ -142,15 +142,24 @@
 		public function fireHairball():void
 		{
 			_cooldown--;
-			var mousePnt = localToGlobal(new Point(mouseX,mouseY));
-			var dx:Number = mousePnt.x - x;
-			var dy:Number = mousePnt.y - y;
-			var angle:Number = Math.atan2(dy,dx) * 180 / Math.PI;
-			bulletManager.fireBullet(new Point(this.x, this.y), angle)
+			var angle = getAngleToMouse();
+			bulletManager.fireBullet(Hairball, new Point(x, y), angle)
 		}
 
 		public function fireSpecial():void
 		{
+			_cooldown--;
+			var angle = getAngleToMouse();
+			//For testing purposes only
+			bulletManager.fireBullet(FlamingHairball, new Point(x, y), angle)
+		}
+
+		private function getAngleToMouse():Number
+		{
+			var mousePnt = localToGlobal(new Point(mouseX,mouseY));
+			var dx:Number = mousePnt.x - x;
+			var dy:Number = mousePnt.y - y;
+			return Math.atan2(dy,dx) * 180 / Math.PI;
 		}
 		
 		public function update():void

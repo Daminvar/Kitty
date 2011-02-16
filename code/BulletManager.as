@@ -4,41 +4,25 @@
 
 	public class BulletManager
 	{
-		private var allBullets:Array = new Array();
-		private var activeBullets:Array = new Array();
-		public function get ActiveBullets():Array
+		private const MAX_BULLETS = 10;
+
+		private var activeBullets:Vector.<Hairball> = new Vector.<Hairball>();
+		public function get ActiveBullets():Vector.<Hairball>
 		{
 			return activeBullets;
 		}
-		private var pooledBullets:Array = new Array();
 		private var game:Logic;
-		private var speed:Number;
-		public function get Speed():Number
-		{
-			return speed;
-		}
-		private var lifespan:int;
 
-		public function BulletManager(aGame:Logic, aSize:int, aSpeed:Number, aLifetime:int)
+		public function BulletManager(aGame:Logic)
 		{
 			game = aGame;
-			speed = aSpeed;
-			lifespan = aLifetime;
-
-			for (var i:int = 0; i < aSize; i++)
-			{
-				var bullet:Hairball = new Hairball(game);
-				allBullets.push(bullet);
-			}
-
-			pooledBullets = allBullets.concat();
 		}
 
-		public function fireBullet(firingPosition:Point, travelRotation:Number):Boolean
+		public function fireBullet(BulletClass:Class, firingPosition:Point, travelRotation:Number):Boolean
 		{
-			if (pooledBullets.length > 0)
+			if (activeBullets.length < MAX_BULLETS)
 			{
-				var bullet:Hairball = pooledBullets.pop();
+				var bullet = new BulletClass(game);
 				bullet.fire(firingPosition, travelRotation);
 				activeBullets.push(bullet);
 				game.addChild(bullet);
@@ -52,9 +36,8 @@
 			for (var i:int = 0; i < activeBullets.length; i++)
 			{
 				var bullet:Hairball = (activeBullets[i] as Hairball);
-				bullet.move();
-				bullet.age++;
-				if (bullet.age == lifespan)
+				bullet.update();
+				if (bullet.isDead)
 				{
 					killBullet(bullet, i);
 					i--;
@@ -73,7 +56,6 @@
 		public function killBullet(b:Hairball, index:int):void
 		{
 			activeBullets.splice(index, 1);
-			pooledBullets.push(b);
 			game.removeChild(b);
 		}
 	}
