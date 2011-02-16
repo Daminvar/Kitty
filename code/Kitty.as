@@ -8,90 +8,94 @@
 
 	public class Kitty extends GameEntity
 	{
-		var ACCELERATION:Number = 2.5;
-		var SPEED:Number = 5;
-		var ORIGINAL_VELOCITY:Number = 25;
-		var gravity:Number = 0.2;
-		var origY:Number;
-		var velocity:Number;
-		private var cooldown:int = 10;
-		public var bulletManager:BulletManager;
-		private var game:Logic;
-		private var jumping:Boolean;
-		private var falling:Boolean;
-		private var dead:Boolean;
-		private var moveBuffer:Number;
-		private var maxMoveBuffer:Number;
-		var canMove:Boolean;
-		var canMoveLeft:Number;
-		var canMoveRight:Number;
+		const ACCELERATION:Number = 2.5;
+		const GRAVITY:Number = 0.2;
+		const ORIGINAL_VELOCITY:Number = 25;
+		const SPEED:Number = 5;
 
-		public function Kitty(xCo:Number,yCo:Number,game:Logic)
+		private var _velocity:Number;
+		private var _bulletManager:BulletManager;
+		private var _cooldown:Number;
+		private var _game:Logic;
+		private var _jumping:Boolean;
+		private var _falling:Boolean;
+		private var _dead:Boolean;
+		private var _moveBuffer:Number;
+		private var _maxMoveBuffer:Number;
+		private var _canMove:Boolean;
+		private var _canMoveLeft:Number;
+		private var _canMoveRight:Number;
+
+		public function get bulletManager():BulletManager
 		{
-			x = xCo;
-			y = yCo;
-			velocity = ORIGINAL_VELOCITY;
-			origY = yCo;
-			bulletManager = new BulletManager(game,10,10,50);
-			this.game = game;
+			return _bulletManager;
+		}
+
+		public function Kitty(xPos:Number, yPos:Number, game:Logic)
+		{
+			x = xPos;
+			y = yPos;
+			_velocity = ORIGINAL_VELOCITY;
+			_bulletManager = new BulletManager(game,10,10,50);
+			_game = game;
 			showOutline();
-			dead = false;
-			moveBuffer = 0;
-			canMove = true;
-			canMoveLeft =0;
-			canMoveRight = 0;
-			maxMoveBuffer = 64;
+			_dead = false;
+			_moveBuffer = 0;
+			_canMove = true;
+			_canMoveLeft =0;
+			_canMoveRight = 0;
+			_maxMoveBuffer = 64;
 
 			onRemoved(function() {
-				bulletManager.killAllBullets();
+				_bulletManager.killAllBullets();
 			});
 		}
 		
 		public function isDead():Boolean
 		{
-			return dead;
+			return _dead;
 		}
 		
 		public function canLeft():Boolean
 		{
-			return canMoveLeft <= maxMoveBuffer;
+			return _canMoveLeft <= _maxMoveBuffer;
 		}
 
 		public function canRight():Boolean
 		{
-			return canMoveRight <= maxMoveBuffer;
+			return _canMoveRight <= _maxMoveBuffer;
 		}
 
 		public function moveLeft():void
 		{
-			if (!game.getLevel().isCollidingWithEnvironment(this))
+			if (!_game.getLevel().isCollidingWithEnvironment(this))
 			{
 				x -=  SPEED;
-				canMoveLeft += SPEED;
-				canMoveRight -= SPEED;
+				_canMoveLeft += SPEED;
+				_canMoveRight -= SPEED;
 				
-				while(game.getLevel().isCollidingWithEnvironment(this))
+				while(_game.getLevel().isCollidingWithEnvironment(this))
 				{
 					x +=  1;
-					canMoveLeft -= 1;
-					canMoveRight += 1;
+					_canMoveLeft -= 1;
+					_canMoveRight += 1;
 				}
 			}
 		}
 
 		public function moveRight():void
 		{
-			if (!game.getLevel().isCollidingWithEnvironment(this))
+			if (!_game.getLevel().isCollidingWithEnvironment(this))
 			{
 				x +=  SPEED;
-				canMoveLeft -= SPEED;
-				canMoveRight += SPEED;
+				_canMoveLeft -= SPEED;
+				_canMoveRight += SPEED;
 				
-				while(game.getLevel().isCollidingWithEnvironment(this))
+				while(_game.getLevel().isCollidingWithEnvironment(this))
 				{
 					x -=  1;
-					canMoveLeft += 1;
-					canMoveRight -= 1;
+					_canMoveLeft += 1;
+					_canMoveRight -= 1;
 				}
 			}
 
@@ -106,19 +110,20 @@
 		private function jumpProper(e:Event)
 		{
 
-			if (!game.getLevel().isCollidingWithEnvironment(this) && !falling)
+			if (!_game.getLevel().isCollidingWithEnvironment(this) &&
+				!_falling)
 			{
-				jumping = true;
-				y -=  velocity;
-				velocity -=  ACCELERATION;
-				while(game.getLevel().isCollidingWithEnvironment(this))
+				_jumping = true;
+				y -=  _velocity;
+				_velocity -=  ACCELERATION;
+				while(_game.getLevel().isCollidingWithEnvironment(this))
 				{
 					y += 1;
-					jumping = false;
+					_jumping = false;
 				}
-				if(velocity <= 0)
+				if(_velocity <= 0)
 				{
-					jumping = false;
+					_jumping = false;
 					removeEventListener(Event.ENTER_FRAME, jumpProper);
 				}
 			}
@@ -131,21 +136,17 @@
 		
 		public function kill():void
 		{
-			dead = true;
+			_dead = true;
 		}
 
 		public function fireHairball():void
 		{
-			cooldown--;
+			_cooldown--;
 			var mousePnt = localToGlobal(new Point(mouseX,mouseY));
 			var dx:Number = mousePnt.x - x;
 			var dy:Number = mousePnt.y - y;
 			var angle:Number = Math.atan2(dy,dx) * 180 / Math.PI;
-			trace(angle);
-			if (bulletManager.fireBullet(new Point(this.x,this.y),angle))
-			{
-				cooldown = cooldown;
-			}
+			bulletManager.fireBullet(new Point(this.x, this.y), angle)
 		}
 
 		public function fireSpecial():void
@@ -155,44 +156,44 @@
 		public function update():void
 		{
 			fall();
-			bulletManager.update();
+			_bulletManager.update();
 		}
 
 		private function fall():void
 		{
-			var colliding = game.getLevel().isCollidingWithEnvironment(this);
+			var colliding = _game.getLevel().isCollidingWithEnvironment(this);
 			if (colliding)
 			{
-				for each(var d:DynamicNPE in game.getLevel().entities)
+				for each(var d:DynamicNPE in _game.getLevel().entities)
 				{
 					if (d.isColliding(this))
 						d.handleCollision(this);
 				}
 			}
-			if (!colliding && !jumping)
+			if (!colliding && !_jumping)
 			{
-				falling = true;
-				y+=velocity;
-				while(game.getLevel().isCollidingWithEnvironment(this))
+				_falling = true;
+				y += _velocity;
+				while (_game.getLevel().isCollidingWithEnvironment(this))
 				{
 					y -= 1;
-					falling = false;
+					_falling = false;
 				}
 				
-				if(velocity < 30) //Velocity cap for collision
-					velocity += ACCELERATION;
+				if (_velocity < 30) //Velocity cap for collision
+					_velocity += ACCELERATION;
 				
-				if (y > stage.stageHeight+10)
+				if (y > stage.stageHeight + 10)
 				{
-					falling = false;
-					dead = true;
+					_falling = false;
+					_dead = true;
 				}
 			}
 			else
 			{
-				falling = false;
-				if(!jumping)
-					velocity = ORIGINAL_VELOCITY;
+				_falling = false;
+				if (!_jumping)
+					_velocity = ORIGINAL_VELOCITY;
 			}
 		}
 
