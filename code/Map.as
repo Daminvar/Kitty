@@ -65,8 +65,7 @@
 				var obj = collisionObjects[j];
 				_collisionEntities[j] = createFilledEntity(obj.@x, obj.@y,
 					obj.@width, obj.@height)
-				_fgTarget.addChild(_collisionEntities[j]);
-				_collisionEntities[j].showOutline();
+				_bgTarget.addChild(_collisionEntities[j]);
 			}
 			var dynamicObjects:XMLList = xmlMap.objectgroup.(@name == "entities")[0].object;
 			_dynamicEntities = new Vector.<Array>();
