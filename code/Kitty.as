@@ -179,7 +179,7 @@
 					falling = false;
 				}
 				
-				if(velocity < 30)				//Velocity cap for collision
+				if(velocity < 30) //Velocity cap for collision
 					velocity += ACCELERATION;
 				
 				if (y > stage.stageHeight+10)
