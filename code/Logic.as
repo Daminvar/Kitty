@@ -29,7 +29,7 @@
 			_reticle = new Reticle();
 			_radius = 300;
 			_background = new Background(this);
-			_testLevel = new TestLevel(
+			_testLevel = new NatureLevel(
 				_background.getBackground(),
 				_background.getObjectLayer(),
 				_background.getForeground(), this);
@@ -129,7 +129,10 @@
 
 		private function onClick(e:MouseEvent):void
 		{
-			_kitty.fireHairball();
+			if (_key.isDown(Keyboard.CONTROL))
+				_kitty.fireSpecial();
+			else
+				_kitty.fireHairball();
 		}
 		
 	}
