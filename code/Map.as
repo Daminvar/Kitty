@@ -96,7 +96,7 @@
 		private function renderMap():void
 		{
 			var renderedData = new BitmapData(_tileSize * _mapWidth,
-				_tileSize * _mapHeight)
+				_tileSize * _mapHeight, true, 0)
 
 			for (var zIndex = 0; zIndex < _tiles.length; zIndex++)
 			{

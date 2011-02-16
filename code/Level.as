@@ -1,8 +1,9 @@
-package code
+﻿package code
 {
 	import flash.geom.*;
 
 	import code.*;
+	import flash.display.MovieClip;
 
 	public class Level extends GameEntity
 	{
