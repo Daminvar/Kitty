@@ -32,7 +32,7 @@
 			_testLevel = new TestLevel(
 				_background.getBackground(),
 				_background.getObjectLayer(),
-				_background.getForeground());
+				_background.getForeground(), this);
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_background.getBackground());

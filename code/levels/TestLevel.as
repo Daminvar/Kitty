@@ -1,4 +1,4 @@
-package code.levels
+﻿package code.levels
 {
 	import flash.geom.*;
 
@@ -14,8 +14,10 @@ package code.levels
 		public function TestLevel(
 			backgroundLayer:GameEntity,
 			objectLayer:GameEntity,
-			foregroundLayer:GameEntity)
+			foregroundLayer:GameEntity,
+			parallaxTarget:GameEntity)
 		{
+			parallaxTarget.addChild(new MossyBG());
 			super(_Map, backgroundLayer, objectLayer, foregroundLayer);
 		}
 
