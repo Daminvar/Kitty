@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tilemap" tilewidth="32" tileheight="32">
+  <image source="tilemap.png" width="256" height="256"/>
+ </tileset>
+ <layer name="bg" width="100" height="20">
+  <properties>
+   <property name="type" value="background"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJztmN0OwiAMhbl3Sty8Uq/0/d9xkI3YNK1CpLNm50vOzRjj55QCCwEAAADYB1PSkHRQNL4pG9b6/Hv0HV4OAAAAAD/wfVsT9nOwF+KvO+CcqyILIhF4cVuV0XK4Rc6W2vK+N5yJtmDcqJ1veAb9H4B0v+/JP/nx6XzUc57uRMekU1jyHn1uwUVQK6W/FCm+rGOrJw8i6kdkZb2R/Kj1JK/r0lfJE2/kWODjrIkP7ofl+UDzo8YT7kWLJzV3My9rSfLDypOSVzRPtBwjxVqRt/lsoYyLxkXt+KQY43V4GY+/GVqADfM=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" name="collision" width="100" height="20">
+  <object x="448" y="608" width="320" height="32"/>
+  <object x="480" y="576" width="192" height="32"/>
+  <object x="512" y="544" width="128" height="32"/>
+  <object x="0" y="608" width="320" height="32"/>
+  <object x="544" y="512" width="64" height="32"/>
+  <object x="896" y="416" width="224" height="32"/>
+  <object x="896" y="448" width="32" height="96"/>
+  <object x="704" y="512" width="192" height="32"/>
+  <object x="1888" y="544" width="192" height="32"/>
+  <object x="960" y="576" width="320" height="32"/>
+  <object x="2240" y="448" width="256" height="32"/>
+  <object x="2336" y="480" width="64" height="128"/>
+  <object x="2176" y="608" width="384" height="32"/>
+  <object x="2656" y="608" width="544" height="32"/>
+  <object x="2400" y="480" width="32"/>
+  <object x="1888" y="288" width="352" height="32"/>
+  <object x="2080" y="128" width="160" height="32"/>
+  <object x="1440" y="128" width="544" height="32"/>
+  <object x="1760" y="416" width="192" height="32"/>
+  <object x="1760" y="384" width="96" height="32"/>
+  <object x="1792" y="352" width="32" height="32"/>
+  <object x="1376" y="480" width="288" height="32"/>
+  <object x="0" y="512" width="160" height="96"/>
+  <object x="160" y="544" width="32" height="64"/>
+  <object x="192" y="576" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup name="entities" width="100" height="20">
+  <object name="skeletuna" x="1888" y="480" width="192" height="64"/>
+  <object name="skeletuna" x="2080" y="64" width="160" height="64"/>
+  <object name="saw" x="1824" y="64" width="96" height="96"/>
+  <object name="saw" x="1600" y="64" width="96" height="96"/>
+  <object name="saw" x="1408" y="96" width="96" height="96"/>
+  <object name="saw" x="1024" y="160" width="96" height="96"/>
+  <object name="saw" x="928" y="160" width="96" height="96"/>
+  <object name="saw" x="832" y="160" width="96" height="96"/>
+  <object name="saw" x="736" y="160" width="96" height="96"/>
+  <object name="can" x="1120" y="160" width="288" height="192"/>
+  <object name="skeletuna" x="544" y="448" width="64" height="64"/>
+  <object name="skeletuna" x="2656" y="544" width="192" height="64"/>
+ </objectgroup>
+</map>

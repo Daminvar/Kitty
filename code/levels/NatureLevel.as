@@ -7,7 +7,7 @@
 
 	public class NatureLevel extends Level
 	{
-		[Embed(source="../../res/testmap.tmx",
+		[Embed(source="../../res/nature.tmx",
 			mimeType="application/octet-stream")]
 		private static const _Map:Class;
 
