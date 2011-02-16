@@ -13,18 +13,19 @@
 		const ORIGINAL_VELOCITY:Number = 25;
 		const SPEED:Number = 5;
 
-		private var _velocity:Number;
 		private var _bulletManager:BulletManager;
-		private var _cooldown:Number;
-		private var _game:Logic;
-		private var _jumping:Boolean;
-		private var _falling:Boolean;
-		private var _dead:Boolean;
-		private var _moveBuffer:Number;
-		private var _maxMoveBuffer:Number;
 		private var _canMove:Boolean;
 		private var _canMoveLeft:Number;
 		private var _canMoveRight:Number;
+		private var _cooldown:Number;
+		private var _dead:Boolean;
+		private var _falling:Boolean;
+		private var _game:Logic;
+		private var _jumping:Boolean;
+		private var _maxMoveBuffer:Number;
+		private var _moveBuffer:Number;
+		private var _SpecialHairball:Class;
+		private var _velocity:Number;
 
 		public function get bulletManager():BulletManager
 		{
@@ -45,6 +46,9 @@
 			_canMoveLeft =0;
 			_canMoveRight = 0;
 			_maxMoveBuffer = 64;
+
+			//For testing purposes only
+			_SpecialHairball = FlamingHairball;
 
 			onRemoved(function() {
 				_bulletManager.killAllBullets();
@@ -103,7 +107,6 @@
 
 		public function jump()
 		{
-			
 			addEventListener(Event.ENTER_FRAME, jumpProper);
 		}
 
@@ -139,6 +142,11 @@
 			_dead = true;
 		}
 
+		public function setSpecial(SpecialHairball:Class):void
+		{
+			_SpecialHairball = SpecialHairball;
+		}
+
 		public function fireHairball():void
 		{
 			_cooldown--;
@@ -150,8 +158,7 @@
 		{
 			_cooldown--;
 			var angle = getAngleToMouse();
-			//For testing purposes only
-			bulletManager.fireBullet(FlamingHairball, new Point(x, y), angle)
+			bulletManager.fireBullet(_SpecialHairball, new Point(x, y), angle)
 		}
 
 		private function getAngleToMouse():Number
