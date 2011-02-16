@@ -1,4 +1,4 @@
-package code.entities
+﻿package code.entities
 {
 	import code.*;
 
