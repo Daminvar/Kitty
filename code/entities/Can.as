@@ -1,6 +1,6 @@
-﻿package code
+﻿package code.entities
 {
-	import flash.display.MovieClip;
+	import code.*;
 	
 	public class Can extends DynamicNPE
 	{
@@ -18,12 +18,6 @@
 		
 		public override function update():void
 		{
-		}
-		
-		public function raise()
-		{
-			if(this.y > MAXRAISE)
-				this.y -= RAISENUM;
 		}
 	}
 }

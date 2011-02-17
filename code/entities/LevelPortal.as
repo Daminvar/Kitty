@@ -17,7 +17,6 @@
 		
 		public override function update():void
 		{
-			
 		}
 		
 		public override function handleCollision(k:Kitty):void
