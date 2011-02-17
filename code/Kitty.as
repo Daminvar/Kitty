@@ -96,6 +96,7 @@
 
 		public function moveRight():void
 		{
+
 			if (!_game.getLevel().isCollidingWithEnvironment(this))
 			{
 				x +=  SPEED;
@@ -184,7 +185,7 @@
 
 		private function fall():void
 		{
-			if (!_game.getLevel().isCollidingWithEnvironment(this) && !_jumping)
+			if (!_jumping)
 			{
 				_falling = true;
 				y += _velocity;
