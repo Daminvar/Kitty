@@ -30,7 +30,7 @@
 				addToEntityVectorAndStage(new Saw(rect.x, rect.y, rect.width,
 					rect.height));
 			if (entityName == "spicyTuna")
-				addToEntityVectorAndStage(new SpicyTuna(rect.x, rect.y));
+				addToEntityVectorAndStage(new SpicyTuna(this, rect.x, rect.y));
 		}
 	}
 }

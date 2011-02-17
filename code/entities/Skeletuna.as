@@ -21,7 +21,7 @@
 			_facing = "right";
 			_level = lvl;
 			_patrolWidth = patrolWidth;
-                        isCollidable = true;
+			_isCollidable = true;
 		}
 				
 		public override function update():void
