@@ -34,9 +34,7 @@
 				_background.getBackground(),
 				_background.getObjectLayer(),
 				_background.getForeground(), this);
-			_kitty = new Kitty(_testLevel.getMap().kittySpawnPoint.x,
-				_testLevel.getMap().kittySpawnPoint.y,
-				this);
+			initKitty();
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_background.getBackground());
@@ -46,6 +44,14 @@
 			addChild(_reticle);
 			addChild(_background.getForeground()); 
 			_background.reset();
+		}
+
+		private function initKitty():void
+		{
+			_kitty = new Kitty(_testLevel.getMap().kittySpawnPoint.x %
+				stage.stageWidth,
+				_testLevel.getMap().kittySpawnPoint.y,
+				this);
 		}
 		
 		public function getLevel():Level
@@ -60,9 +66,12 @@
 				_background.reset();
 				_testLevel.reset();
 				_kittyLayer.removeChild(_kitty);
-				_kitty = new Kitty(500,
-					400,
-					this);
+				for (var j = 0; j < _kitty.bulletManager.ActiveBullets.length; j++)
+				{
+					var h:Hairball = _kitty.bulletManager.ActiveBullets[j] as Hairball;
+					removeChild(h);
+				}
+				initKitty();
 				_kittyLayer.addChild(_kitty);
 			}
 			handleInput();
