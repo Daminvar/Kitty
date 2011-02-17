@@ -66,6 +66,11 @@
 				_background.reset();
 				_testLevel.reset();
 				_kittyLayer.removeChild(_kitty);
+				for (var j = 0; j < _kitty.bulletManager.ActiveBullets.length; j++)
+				{
+					var h:Hairball = _kitty.bulletManager.ActiveBullets[j] as Hairball;
+					removeChild(h);
+				}
 				initKitty();
 				_kittyLayer.addChild(_kitty);
 			}

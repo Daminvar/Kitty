@@ -150,6 +150,7 @@
 		public function kill():void
 		{
 			_dead = true;
+			bulletManager.killAllBullets();
 		}
 
 		public function setSpecial(SpecialHairball:Class):void
