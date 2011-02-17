@@ -46,6 +46,7 @@
 			_canMoveLeft =0;
 			_canMoveRight = 0;
 			_maxMoveBuffer = 64;
+			_SpecialHairball = Hairball;
 			
 			onRemoved(function() {
 				_bulletManager.killAllBullets();
