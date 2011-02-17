@@ -11,7 +11,7 @@
 			y = yPos;
 			this.width = width;
 			this.height = height;
-                        isCollidable = false;
+                        isCollidable = true;
 		}
 
 		public override function update():void
