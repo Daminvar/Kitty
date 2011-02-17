@@ -1,4 +1,4 @@
-package code.levels
+﻿package code.levels
 {
 	import flash.geom.*;
 
@@ -23,6 +23,9 @@ package code.levels
 
 		protected override function register(entityName:String, rect:Rectangle):void
 		{
+			if (entityName == "levelportal")
+				addToEntityVectorAndStage(new LevelPortal(rect.x, rect.y,
+					rect.width, rect.height));
 			if (entityName == "skeletuna")
 				addToEntityVectorAndStage(new Skeletuna(this, rect.x, rect.y,
 					rect.width));

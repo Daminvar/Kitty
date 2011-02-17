@@ -121,6 +121,5 @@
   <object name="skeletuna" x="2176" y="128" width="96" height="64"/>
   <object name="saw" x="2016" y="320" width="128" height="128"/>
   <object name="spicyTuna" x="1344" y="512" width="96" height="64"/>
-  <object name="levelportal" x="3008" y="480" width="64" height="96"/>
  </objectgroup>
 </map>
