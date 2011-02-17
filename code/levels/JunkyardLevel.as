@@ -23,6 +23,9 @@
 
 		protected override function register(entityName:String, rect:Rectangle):void
 		{
+			if (entityName == "helparrowleft")
+				addToEntityVectorAndStage(new HelpArrow(rect.x, rect.y,
+					rect.width, rect.height, -1, 1, 0));
 			if (entityName == "levelportal")
 				addToEntityVectorAndStage(new LevelPortal(rect.x, rect.y,
 					rect.width, rect.height));
