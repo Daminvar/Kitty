@@ -60,7 +60,13 @@
 		
 		public function canLeft():Boolean
 		{
-			return _canMoveLeft <= _maxMoveBuffer;
+			if(_game._background.getBackground().x == 0)
+			{
+				return true;
+			}else{
+				return _canMoveLeft <= _maxMoveBuffer;
+			}
+			
 		}
 
 		public function canRight():Boolean
@@ -68,7 +74,7 @@
 			if(_game._background.mapIsAtEnd()){
 				return true;
 			}else{
-				return _canMoveRight <= _maxMoveBuffer;
+				return _canMoveRight <= _maxMoveBuffer - this.width;
 			}
 			
 		}
