@@ -5,11 +5,12 @@ package code
 	public class FlamingHairball extends Hairball
 	{
 		private const ACCELERATION:int = 1;
-		private const SPEED:int = 9;
+		private const SPEED:int = 15;
 
 		public function FlamingHairball(game:Logic)
 		{
 			super(game);
+			_lifeSpan = 40;
 		}
 
 		public override function fire(firingPosition:Point,
