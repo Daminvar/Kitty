@@ -96,6 +96,7 @@
 
 		public function moveRight():void
 		{
+
 			if (!_game.getLevel().isCollidingWithEnvironment(this))
 			{
 				x +=  SPEED;

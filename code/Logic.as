@@ -136,7 +136,7 @@
 
 		private function onClick(e:MouseEvent):void
 		{
-			if (_key.isDown(Keyboard.CONTROL))
+			if (_key.isDown(Keyboard.SHIFT))
 				_kitty.fireSpecial();
 			else
 				_kitty.fireHairball();
