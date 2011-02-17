@@ -58,6 +58,11 @@
 			objectLayer_mc.addChild(object);
 		}
 		
+		public function mapIsAtEnd():Boolean
+		{
+			return !(background_mc.x - game.stage.stageWidth > - game._testLevel.getMap().getPixelWidth());
+		}
+		
 		/*
 			This function updates (moves) the background
 			dir -- Direction kitty should move
@@ -68,7 +73,7 @@
 				background_mc.x += speed;
 				foreground_mc.x += speed;
 				objectLayer_mc.x += speed;
-			}else if(dir == "right" && background_mc.x - game.stage.stageWidth > - game._testLevel.getMap().getPixelWidth()){
+			}else if(dir == "right" && !mapIsAtEnd()){
 				background_mc.x -= speed;
 				foreground_mc.x -= speed;
 				objectLayer_mc.x -= speed;

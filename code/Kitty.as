@@ -65,7 +65,12 @@
 
 		public function canRight():Boolean
 		{
-			return _canMoveRight <= _maxMoveBuffer;
+			if(_game._background.mapIsAtEnd()){
+				return true;
+			}else{
+				return _canMoveRight <= _maxMoveBuffer;
+			}
+			
 		}
 		
 		private function checkNPECollision():void
@@ -79,8 +84,7 @@
 
 		public function moveLeft():void
 		{
-			if (!_game.getLevel().isCollidingWithEnvironment(this))
-			{
+
 				x -=  SPEED;
 				_canMoveLeft += SPEED;
 				_canMoveRight -= SPEED;
@@ -91,14 +95,13 @@
 					_canMoveLeft -= 1;
 					_canMoveRight += 1;
 				}
-			}
+			
 		}
 
 		public function moveRight():void
 		{
 
-			if (!_game.getLevel().isCollidingWithEnvironment(this))
-			{
+			
 				x +=  SPEED;
 				_canMoveLeft -= SPEED;
 				_canMoveRight += SPEED;
@@ -109,7 +112,7 @@
 					_canMoveLeft += 1;
 					_canMoveRight -= 1;
 				}
-			}
+			
 		}
 
 		public function jump()
