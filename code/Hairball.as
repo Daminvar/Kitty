@@ -25,6 +25,11 @@
 			return _isDead;
 		}
 
+		public function kill():void
+		{
+			_isDead = true;
+		}
+
 		public function Hairball(game:Logic)
 		{
 			_game = game;

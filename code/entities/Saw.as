@@ -18,6 +18,12 @@
 		{
 		}
 
+		public override function handleHairball(h:Hairball):void
+		{
+			if (h.isColliding(this))
+				h.kill();
+		}
+
 		public override function handleCollision(k:Kitty):void
 		{
 			k.kill();
