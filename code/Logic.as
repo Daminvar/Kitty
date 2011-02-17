@@ -18,6 +18,7 @@
 		var _background:Background;
 		var _key:KeyPoll;
 		var _kitty:Kitty;
+		var _kittyLayer:GameEntity;
 		var _radius:Number;
 		var _reticle:Reticle;
 		var _testLevel:Level;
@@ -25,6 +26,7 @@
 		public function Logic()
 		{
 			_kitty = new Kitty(100,300,this);
+			_kittyLayer = new GameEntity();
 			_key = new KeyPoll(this.stage);
 			_reticle = new Reticle();
 			_radius = 300;
@@ -37,7 +39,8 @@
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_background.getBackground());
 			addChild(_background.getObjectLayer());
-			addChild(_kitty);
+			addChild(_kittyLayer);
+			_kittyLayer.addChild(_kitty);
 			addChild(_reticle);
 			addChild(_background.getForeground()); 
 		}
@@ -53,9 +56,9 @@
 			{
 				_background.reset();
 				_testLevel.reset();
-				removeChild(_kitty);
+				_kittyLayer.removeChild(_kitty);
 				_kitty = new Kitty(100,300,this);
-				addChild(_kitty);
+				_kittyLayer.addChild(_kitty);
 			}
 			handleInput();
 			_testLevel.update();

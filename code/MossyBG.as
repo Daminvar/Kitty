@@ -1,6 +1,5 @@
 ﻿package code
 {
-	
 	import flash.display.MovieClip;
 	
 	public class MossyBG extends GameEntity{

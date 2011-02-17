@@ -14,15 +14,16 @@
 		private static var _tileset:Bitmap;
 
 		private var _bgTarget:GameEntity;
+		private var _bgTiles:Vector.<Vector.<Vector.<int>>>;
 		private var _collisionEntities:Vector.<GameEntity>;
 		private var _dynamicEntities:Vector.<Array>;
 		private var _fgTarget:GameEntity;
+		private var _fgTiles:Vector.<Vector.<Vector.<int>>>;
 		private var _isLoaded:Boolean;
 		private var _mapHeight:int;
 		private var _mapWidth:int;
 		private var _renderedMap:Bitmap;
 		private var _tileSize:int;
-		private var _tiles:Vector.<Vector.<Vector.<int>>>;
 
 		public function get isLoaded():Boolean
 		{
@@ -43,7 +44,8 @@
 			_bgTarget = bgTarget;
 			_fgTarget = fgTarget;
 			parseMap(loadedMap);
-			renderMap();
+			renderLayer(_bgTiles, _bgTarget);
+			renderLayer(_fgTiles, _fgTarget);
 		}
 
 		private function parseMap(xmlMap:XML):void
@@ -51,12 +53,21 @@
 			_mapWidth = xmlMap.@width;
 			_mapHeight = xmlMap.@height;
 			_tileSize = xmlMap.tileset.@tilewidth; //Assuming square tiles.
-			_tiles = new Vector.<Vector.<Vector.<int>>>(xmlMap.layer.data.length());
 			//Using a foreach loop gives strange results, so the more verbose
 			//for loop version is used.
-			for (var i = 0; i < xmlMap.layer.data.length(); i++)
+			var bgLayers = xmlMap.layer.(properties.property.@name == "type" &&
+				properties.property.@value == "background").data;
+			_bgTiles = new Vector.<Vector.<Vector.<int>>>(bgLayers.length());
+			for (var i = 0; i < bgLayers.length(); i++)
 			{
-				_tiles[i] = stringTo2DVector(xmlMap.layer.data[i]);
+				_bgTiles[i] = stringTo2DVector(bgLayers[i]);
+			}
+			var fgLayers = xmlMap.layer.(properties.property.@name == "type" &&
+				properties.property.@value == "foreground").data;
+			_fgTiles = new Vector.<Vector.<Vector.<int>>>(fgLayers.length());
+			for (var f = 0; f < fgLayers.length(); f++)
+			{
+				_fgTiles[f] = stringTo2DVector(fgLayers[f]);
 			}
 			var collisionObjects:XMLList = xmlMap.objectgroup.(@name == "collision")[0].object;
 			_collisionEntities = new Vector.<GameEntity>(collisionObjects.length());
@@ -92,14 +103,14 @@
 			return layer2D;
 		}
 
-		private function renderMap():void
+		private function renderLayer(tiles:Vector.<Vector.<Vector.<int>>>, renderTarget:GameEntity):void
 		{
 			var renderedData = new BitmapData(_tileSize * _mapWidth,
 				_tileSize * _mapHeight, true, 0)
 
-			for (var zIndex = 0; zIndex < _tiles.length; zIndex++)
+			for (var zIndex = 0; zIndex < tiles.length; zIndex++)
 			{
-				var layer = _tiles[zIndex];
+				var layer = tiles[zIndex];
 				for (var yIndex = 0; yIndex < _mapHeight; yIndex++)
 				{
 					for (var xIndex = 0; xIndex < _mapWidth; xIndex++)
@@ -122,7 +133,7 @@
 				}
 			}
 			_renderedMap = new Bitmap(renderedData);
-			_bgTarget.addChild(_renderedMap);
+			renderTarget.addChild(_renderedMap);
 		}
 
 		private function createFilledEntity(x, y, width, height):GameEntity
