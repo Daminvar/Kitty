@@ -108,7 +108,6 @@
 					_canMoveRight -= 1;
 				}
 			}
-
 		}
 
 		public function jump()
@@ -190,10 +189,7 @@
 				y += _velocity;
 				while (_game.getLevel().isCollidingWithEnvironment(this))
 				{
-					if (_game.getLevel().isCollidingWithEnvironment(this))
-					{
-						checkNPECollision();
-					}
+					checkNPECollision();
 					y -= 1;
 					_falling = false;
 				}

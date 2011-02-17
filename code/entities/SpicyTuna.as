@@ -9,6 +9,7 @@
 			// constructor code
 			x = xPos;
 			y = yPos;
+                        isCollidable = false;
 		}
 		
 		public override function update():void

@@ -71,6 +71,10 @@
 				_testLevel.entities.forEach(function(e:DynamicNPE, i:int, vec:*) {
 					e.handleHairball(b);
 				});
+				
+				if(getLevel().isCollidingWithEnvironment(b)){
+					_kitty.bulletManager.killBullet(b,i);
+				}
 			}
 		}
 

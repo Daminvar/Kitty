@@ -46,7 +46,7 @@
 		{
 			return _map.isCollidingWithEnvironment(e) || !_entities.every(
 				function(d:DynamicNPE, i:int, v:*) {
-				return !d.isColliding(e);
+				return !d.isCollidable ||  !d.isColliding(e);
 			});
 		}
 

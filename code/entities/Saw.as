@@ -1,4 +1,4 @@
-package code.entities
+﻿package code.entities
 {
 	import code.*;
 
@@ -11,6 +11,7 @@ package code.entities
 			y = yPos;
 			this.width = width;
 			this.height = height;
+                        isCollidable = true;
 		}
 
 		public override function update():void
