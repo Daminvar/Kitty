@@ -71,5 +71,6 @@
   <object name="skeletuna" x="544" y="448" width="64" height="64"/>
   <object name="skeletuna" x="2656" y="544" width="192" height="64"/>
   <object name="levelportal" x="0" y="384" width="128" height="128"/>
+  <object name="kittySpawn" x="3136" y="544"/>
  </objectgroup>
 </map>

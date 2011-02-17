@@ -121,5 +121,6 @@
   <object name="skeletuna" x="2176" y="128" width="96" height="64"/>
   <object name="saw" x="2016" y="320" width="128" height="128"/>
   <object name="spicyTuna" x="1344" y="512" width="96" height="64"/>
+  <object name="kittySpawn" x="192" y="352"/>
  </objectgroup>
 </map>

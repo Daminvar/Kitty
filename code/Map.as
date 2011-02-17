@@ -20,6 +20,7 @@
 		private var _fgTarget:GameEntity;
 		private var _fgTiles:Vector.<Vector.<Vector.<int>>>;
 		private var _isLoaded:Boolean;
+		private var _kittySpawnPoint:Point;
 		private var _mapHeight:int;
 		private var _mapWidth:int;
 		private var _renderedMap:Bitmap;
@@ -33,6 +34,11 @@
 		public function get dynamicEntities():Vector.<Array>
 		{
 			return _dynamicEntities;
+		}
+
+		public function get kittySpawnPoint():Point
+		{
+			return _kittySpawnPoint
 		}
 
 		/** Loads the map specified by the given string. */
@@ -84,6 +90,8 @@
 			{
 				var dynObj = dynamicObjects[k];
 				var keyName:String = dynObj.@name;
+				if (keyName == "kittySpawn")
+					_kittySpawnPoint = new Point(dynObj.@x, dynObj.@y);
 				var arr = new Array(keyName, new Rectangle(dynObj.@x,
 					dynObj.@y, dynObj.@width, dynObj.@height));
 				_dynamicEntities.push(arr);

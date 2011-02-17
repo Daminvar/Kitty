@@ -25,7 +25,6 @@
 
 		public function Logic()
 		{
-			_kitty = new Kitty(100,300,this);
 			_kittyLayer = new GameEntity();
 			_key = new KeyPoll(this.stage);
 			_reticle = new Reticle();
@@ -35,6 +34,9 @@
 				_background.getBackground(),
 				_background.getObjectLayer(),
 				_background.getForeground(), this);
+			_kitty = new Kitty(_testLevel.getMap().kittySpawnPoint.x,
+				_testLevel.getMap().kittySpawnPoint.y,
+				this);
 			stage.addEventListener(Event.ENTER_FRAME, update);
 			stage.addEventListener(MouseEvent.CLICK, onClick);
 			addChild(_background.getBackground());
@@ -57,7 +59,9 @@
 				_background.reset();
 				_testLevel.reset();
 				_kittyLayer.removeChild(_kitty);
-				_kitty = new Kitty(100,300,this);
+				_kitty = new Kitty(_testLevel.getMap().kittySpawnPoint.x,
+					_testLevel.getMap().kittySpawnPoint.y,
+					this);
 				_kittyLayer.addChild(_kitty);
 			}
 			handleInput();
