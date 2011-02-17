@@ -1,4 +1,4 @@
-?package code.levels
+package code.levels
 {
 	import flash.geom.*;
 

@@ -2,7 +2,7 @@
 {
 	import flash.display.MovieClip;
 	
-	public class Can extends GameEntity
+	public class Can extends DynamicNPE
 	{
 		private var RAISENUM:Number;
 		private var MAXRAISE:Number;
@@ -13,6 +13,11 @@
 			this.y = yPos;
 			RAISENUM = 15;
 			MAXRAISE = max;
+			_isCollidable = true;
+		}
+		
+		public override function update():void
+		{
 		}
 		
 		public function raise()

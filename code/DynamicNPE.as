@@ -3,8 +3,12 @@ package code
 	/** Represents a dynamic Non-Player Entity (NPE) on the map. */
 	public class DynamicNPE extends GameEntity
 	{
-               
-		public var isCollidable:Boolean;
+		protected var _isCollidable:Boolean;
+
+		public function get isCollidable():Boolean
+		{
+			return _isCollidable;
+		}
 
 		public function update():void
 		{
