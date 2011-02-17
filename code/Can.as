@@ -13,12 +13,11 @@
 			this.y = yPos;
 			RAISENUM = 15;
 			MAXRAISE = max;
-			isCollidable = true;
+			_isCollidable = true;
 		}
 		
 		public override function update():void
 		{
-			
 		}
 		
 		public function raise()
