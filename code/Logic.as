@@ -30,7 +30,7 @@
 			_reticle = new Reticle();
 			_radius = 300;
 			_background = new Background(this);
-			_testLevel = new NatureLevel(
+			_testLevel = new JunkyardLevel(
 				_background.getBackground(),
 				_background.getObjectLayer(),
 				_background.getForeground(), this);
@@ -45,6 +45,7 @@
 			_kittyLayer.addChild(_kitty);
 			addChild(_reticle);
 			addChild(_background.getForeground()); 
+			_background.reset();
 		}
 		
 		public function getLevel():Level
@@ -59,8 +60,8 @@
 				_background.reset();
 				_testLevel.reset();
 				_kittyLayer.removeChild(_kitty);
-				_kitty = new Kitty(_testLevel.getMap().kittySpawnPoint.x,
-					_testLevel.getMap().kittySpawnPoint.y,
+				_kitty = new Kitty(500,
+					400,
 					this);
 				_kittyLayer.addChild(_kitty);
 			}
