@@ -12,6 +12,7 @@
 			this.width = width;
 			this.height = height;
 			_isCollidable = true;
+			boundingBox.visible = false;
 		}
 
 		public override function update():void
@@ -27,6 +28,11 @@
 		public override function handleCollision(k:Kitty):void
 		{
 			k.kill();
+		}
+		
+		public override function isColliding(e:GameEntity):Boolean
+		{
+			return boundingBox.hitTestObject(e);
 		}
 	}
 }
