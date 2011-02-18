@@ -78,5 +78,6 @@
   <object name="kittySpawn" x="3040" y="544"/>
   <object name="helparrowleft" x="2976" y="448" width="128" height="64"/>
   <object name="cog" x="896" y="0" width="128" height="128"/>
+  <object name="helparrowleft" x="1056" y="32" width="64" height="32"/>
  </objectgroup>
 </map>
