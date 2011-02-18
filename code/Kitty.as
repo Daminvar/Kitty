@@ -90,7 +90,6 @@
 
 		public function moveLeft():void
 		{
-
 				x -=  SPEED;
 				_canMoveLeft += SPEED;
 				_canMoveRight -= SPEED;
@@ -101,24 +100,20 @@
 					_canMoveLeft -= 1;
 					_canMoveRight += 1;
 				}
-			
 		}
 
 		public function moveRight():void
 		{
-
-			
 				x +=  SPEED;
 				_canMoveLeft -= SPEED;
 				_canMoveRight += SPEED;
 				
 				while(_game.getLevel().isCollidingWithEnvironment(this))
-				{
+				{	
 					x -=  1;
 					_canMoveLeft += 1;
 					_canMoveRight -= 1;
 				}
-			
 		}
 
 		public function jump()
@@ -148,6 +143,7 @@
 			}
 			else
 			{
+				_jumping = false;
 				removeEventListener(Event.ENTER_FRAME, jumpProper);
 			}
 
@@ -202,7 +198,7 @@
 				while (_game.getLevel().isCollidingWithEnvironment(this))
 				{
 					checkNPECollision();
-					y -= 1;
+					y-=1;
 					_falling = false;
 				}
 				
