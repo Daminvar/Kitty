@@ -31,6 +31,9 @@
 					rect.height));
 			if (entityName == "spicyTuna")
 				addToEntityVectorAndStage(new SpicyTuna(this, rect.x, rect.y));
+			if (entityName == "can")
+				addToEntityVectorAndStage(new Can(rect.x, rect.y, rect.width,
+					rect.height));
 		}
 	}
 }

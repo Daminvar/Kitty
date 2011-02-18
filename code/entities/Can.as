@@ -5,15 +5,16 @@
 	public class Can extends DynamicNPE
 	{
 		private var RAISENUM:Number;
-		private var MAXRAISE:Number;
 		
-		public function Can(xPos:Number, yPos:Number, max:Number)
+		public function Can(xPos:Number, yPos:Number, width:Number,
+			height:Number)
 		{
 			trace("woot");
 			this.x = xPos;
 			this.y = yPos;
+			this.width = width;
+			this.height = height;
 			RAISENUM = 10;
-			MAXRAISE = max;
 			_isCollidable = true;
 		}
 		
