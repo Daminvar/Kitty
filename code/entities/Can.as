@@ -9,15 +9,21 @@
 		
 		public function Can(xPos:Number, yPos:Number, max:Number)
 		{
+			trace("woot");
 			this.x = xPos;
 			this.y = yPos;
-			RAISENUM = 15;
+			RAISENUM = 10;
 			MAXRAISE = max;
 			_isCollidable = true;
 		}
 		
 		public override function update():void
 		{
+		}
+		
+		public function lower()
+		{
+			this.y += RAISENUM;
 		}
 	}
 }

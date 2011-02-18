@@ -39,7 +39,6 @@
 			_velocity = ORIGINAL_VELOCITY;
 			_bulletManager = new BulletManager(game);
 			_game = game;
-			showOutline();
 			_dead = false;
 			_moveBuffer = 0;
 			_canMove = true;
@@ -47,6 +46,7 @@
 			_canMoveRight = 0;
 			_maxMoveBuffer = 64;
 			_SpecialHairball = Hairball;
+			boundingBox.visible = false;
 			
 			onRemoved(function() {
 				_bulletManager.killAllBullets();
@@ -225,7 +225,7 @@
 
 		public override function isColliding(e:GameEntity):Boolean
 		{
-			return this.hitTestObject(e);
+			return boundingBox.hitTestObject(e);
 		}
 	}
 }

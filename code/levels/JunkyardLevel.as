@@ -38,7 +38,7 @@
 			if (entityName == "can")
 				addToEntityVectorAndStage(new Can(rect.x, rect.y, 50));
 			if (entityName == "cog")
-				addToEntityVectorAndStage(new Cog(rect.x, rect.y));
+				addToEntityVectorAndStage(new Cog(rect.x, rect.y, this));
 		}
 	}
 }
