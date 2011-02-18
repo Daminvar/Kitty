@@ -133,7 +133,7 @@
   <object name="saw" x="2592" y="576" width="64" height="64"/>
   <object name="saw" x="2656" y="512" width="96" height="96"/>
   <object name="can" x="2496" y="128" width="96" height="128"/>
-  <object name="helparrowright" x="0" y="224" width="128" height="64"/>
+  <object name="helparrowright" x="32" y="224" width="128" height="64"/>
   <object name="rope" x="2528" y="0" width="32" height="128"/>
   <object name="helparrowdown" x="2464" y="32" width="32" height="64"/>
  </objectgroup>

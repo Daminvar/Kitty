@@ -3,12 +3,10 @@
 	import code.*
 	public class HelpArrow extends DynamicNPE
 	{
-		public function HelpArrow(xPos:Number, yPos:Number, wid:Number, hei:Number, scaleX:Number, scaleY:Number, rotation:Number)
+		public function HelpArrow(xPos:Number, yPos:Number, scaleX:Number, scaleY:Number, rotation:Number)
 		{
 			x = xPos;
 			y = yPos;
-			width = wid;
-			height = hei;
 			_isCollidable = false;
 			this.scaleX = scaleX;
 			this.scaleY = scaleY;

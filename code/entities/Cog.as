@@ -30,6 +30,7 @@
 						h.kill();
 					}
 				}
+				rotation += 10;
 			}
 		}
 	}

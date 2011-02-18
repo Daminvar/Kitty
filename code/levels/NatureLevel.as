@@ -37,6 +37,12 @@
 			if (entityName == "rope")
 				addToEntityVectorAndStage(new Rope(this, rect.x, rect.y,
 					rect.height));
+			if (entityName == "helparrowright")
+				addToEntityVectorAndStage(new HelpArrow(rect.x, rect.y, 2, 2,
+					0));
+			if (entityName == "helparrowdown")
+				addToEntityVectorAndStage(new HelpArrow(rect.x, rect.y, 1, -1,
+					90));
 		}
 	}
 }
