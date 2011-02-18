@@ -209,7 +209,7 @@
 				if (_velocity < 30) //Velocity cap for collision
 					_velocity += ACCELERATION;
 				
-				if (y > stage.stageHeight + 10)
+				if (y > _game.stage.stageHeight + 10)
 				{
 					_falling = false;
 					_dead = true;

@@ -1,4 +1,4 @@
-package code
+﻿package code
 {
 	/** Represents a dynamic Non-Player Entity (NPE) on the map. */
 	public class DynamicNPE extends GameEntity
@@ -10,7 +10,7 @@ package code
 			return _isCollidable;
 		}
 
-		public function update():void
+		public function update(g:Logic):void
 		{
 			throw new Error("This method must be overridden.");
 		}

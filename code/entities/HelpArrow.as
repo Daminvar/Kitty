@@ -16,7 +16,7 @@
 			
 		}
 		
-		public override function update():void
+		public override function update(g:Logic):void
 		{
 		}
 		

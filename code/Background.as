@@ -88,29 +88,16 @@
 			dir -- Direction kitty should move
 			speed -- Speed kitty is moving
 		*/
-		public function update(dir:String, speed:Number){
-			if(!mapRight)
-			{
-				if(dir == "left" && background_mc.x < 0){
-					background_mc.x += speed;
-					foreground_mc.x += speed;
-					objectLayer_mc.x += speed;
-				}else if(dir == "right" && !mapIsAtEnd()){
-					background_mc.x -= speed;
-					foreground_mc.x -= speed;
-					objectLayer_mc.x -= speed;
-				}
-			}else if(mapRight)
-			{
-				if(dir == "left" && background_mc.x < 0){
-					background_mc.x -= speed;
-					foreground_mc.x -= speed;
-					objectLayer_mc.x -= speed;
-				}else if(dir == "right" && !mapIsAtEnd()){
-					background_mc.x += speed;
-					foreground_mc.x += speed;
-					objectLayer_mc.x += speed;
-				}
+		public function update(dir:String, speed:Number)
+		{
+			if(dir == "left" && background_mc.x < 0){
+				background_mc.x += speed;
+				foreground_mc.x += speed;
+				objectLayer_mc.x += speed;
+			}else if(dir == "right" && !mapIsAtEnd()){
+				background_mc.x -= speed;
+				foreground_mc.x -= speed;
+				objectLayer_mc.x -= speed;
 			}
 		
 		}

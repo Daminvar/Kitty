@@ -10,7 +10,7 @@
 		protected var _map:Map;
 		protected var _entities:Vector.<DynamicNPE>;
 		protected var _objectLayer:GameEntity;
-
+		
 		public function get entities():Vector.<DynamicNPE>
 		{
 			return _entities;
@@ -26,6 +26,7 @@
 			var str = file.readUTFBytes(file.length);
 			var levelXML = new XML(str);
 			_map = new Map(levelXML, backgroundLayer, foregroundLayer);
+			
 			initEntities();
 		}
 
@@ -41,7 +42,7 @@
 		{
 			return _map;
 		}
-
+		
 		public function isCollidingWithEnvironment(e:GameEntity)
 		{
 			return _map.isCollidingWithEnvironment(e) || !_entities.every(
@@ -50,10 +51,11 @@
 			});
 		}
 
-		public function update():void
+		public function update(g:Logic):void
 		{
+			
 			_entities.forEach(function(e:DynamicNPE, i:int, v:*) {
-				e.update();
+				e.update(g);
 			});
 		}
 

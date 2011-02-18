@@ -12,6 +12,7 @@
 	import fl.motion.easing.Back;
 
 	import code.levels.*;
+	import code.entities.*;
 
 	public class Logic extends GameEntity
 	{
@@ -22,6 +23,7 @@
 		var _radius:Number;
 		var _reticle:Reticle;
 		var _testLevel:Level;
+		var _changeLevel:Boolean;
 
 		public function Logic()
 		{
@@ -45,6 +47,52 @@
 			addChild(_background.getForeground()); 
 			_background.reset();
 		}
+		
+		private function removeLevel():void
+		{
+			removeChild(_background.getBackground());
+			removeChild(_background.getObjectLayer());
+			
+			_kittyLayer.removeChild(_kitty);
+			removeChild(_kittyLayer);
+			removeChild(_reticle);
+			removeChild(_background.getForeground()); 
+		}
+		
+		private function reAddLevel():void
+		{
+			_background = new Background(this);
+			_background.setMapRight(this);
+			_testLevel = new NatureLevel(
+				_background.getBackground(),
+				_background.getObjectLayer(),
+				_background.getForeground(), this);
+			
+			addChild(_background.getBackground());
+			addChild(_background.getObjectLayer());
+			addChild(_kittyLayer);
+			initKitty();
+			_kittyLayer.addChild(_kitty);
+			addChild(_reticle);
+			addChild(_background.getForeground());
+			
+			_background.reset();
+			_testLevel.reset();
+			for (var j = 0; j < _kitty.bulletManager.ActiveBullets.length; j++)
+			{
+				var h:Hairball = _kitty.bulletManager.ActiveBullets[j] as Hairball;
+				removeChild(h);
+			}
+		}
+		
+		public function changeLevel():void
+		{
+			_changeLevel = true;
+			removeLevel();
+			reAddLevel();
+			_changeLevel = false;
+			
+		}
 
 		private function initKitty():void
 		{
@@ -61,33 +109,36 @@
 
 		public function update(e:Event)
 		{
-			if(_kitty.isDead())
+			if(!_changeLevel)
 			{
-				_background.reset();
-				_testLevel.reset();
-				_kittyLayer.removeChild(_kitty);
-				for (var j = 0; j < _kitty.bulletManager.ActiveBullets.length; j++)
+				if(_kitty.isDead())
 				{
-					var h:Hairball = _kitty.bulletManager.ActiveBullets[j] as Hairball;
-					removeChild(h);
+					_background.reset();
+					_testLevel.reset();
+					_kittyLayer.removeChild(_kitty);
+					for (var j = 0; j < _kitty.bulletManager.ActiveBullets.length; j++)
+					{
+						var h:Hairball = _kitty.bulletManager.ActiveBullets[j] as Hairball;
+						removeChild(h);
+					}
+					initKitty();
+					_kittyLayer.addChild(_kitty);
 				}
-				initKitty();
-				_kittyLayer.addChild(_kitty);
-			}
-			handleInput();
-			_testLevel.update();
-			_kitty.update();
-			updateReticle();
-			// hairball collision detection
-			for (var i:int = 0; i < _kitty.bulletManager.ActiveBullets.length; i++)
-			{
-				var b:Hairball = _kitty.bulletManager.ActiveBullets[i] as Hairball;
-				_testLevel.entities.forEach(function(e:DynamicNPE, i:int, vec:*) {
-					e.handleHairball(b);
-				});
-				
-				if(getLevel().isCollidingWithEnvironment(b)){
-					_kitty.bulletManager.killBullet(b,i);
+				handleInput();
+				_testLevel.update(this);
+				_kitty.update();
+				updateReticle();
+				// hairball collision detection
+				for (var i:int = 0; i < _kitty.bulletManager.ActiveBullets.length; i++)
+				{
+					var b:Hairball = _kitty.bulletManager.ActiveBullets[i] as Hairball;
+					_testLevel.entities.forEach(function(e:DynamicNPE, i:int, vec:*) {
+						e.handleHairball(b);
+					});
+					
+					if(getLevel().isCollidingWithEnvironment(b)){
+						_kitty.bulletManager.killBullet(b,i);
+					}
 				}
 			}
 		}
