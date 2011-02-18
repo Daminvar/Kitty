@@ -56,6 +56,10 @@
   <object x="160" y="544" width="32" height="64"/>
   <object x="192" y="576" width="32" height="32"/>
   <object x="0" y="0" width="32" height="384"/>
+  <object x="2400" y="480" width="32" height="128"/>
+  <object x="2432" y="512" width="32" height="96"/>
+  <object x="2464" y="544" width="32" height="64"/>
+  <object x="2496" y="576" width="32" height="32"/>
  </objectgroup>
  <objectgroup name="entities" width="100" height="20">
   <object name="skeletuna" x="1888" y="480" width="192" height="64"/>
@@ -71,8 +75,8 @@
   <object name="skeletuna" x="544" y="448" width="64" height="64"/>
   <object name="skeletuna" x="2656" y="544" width="192" height="64"/>
   <object name="levelportal" x="0" y="384" width="128" height="128"/>
-  <object name="kittySpawn" x="3136" y="544"/>
-  <object name="helparrowleft" x="3008" y="448" width="128" height="64"/>
+  <object name="kittySpawn" x="3040" y="544"/>
+  <object name="helparrowleft" x="2976" y="448" width="128" height="64"/>
   <object name="cog" x="896" y="0" width="128" height="128"/>
  </objectgroup>
 </map>
