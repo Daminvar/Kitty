@@ -62,7 +62,7 @@
 		private function reAddLevel():void
 		{
 			_background = new Background(this);
-			_background.setMapRight(this);
+			_background.setMapRight(true);
 			_testLevel = new NatureLevel(
 				_background.getBackground(),
 				_background.getObjectLayer(),

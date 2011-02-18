@@ -26,7 +26,7 @@
 				{
 					if(_level.entities[i] is Can)
 					{
-						(_level.entities[i] as Can).lower();
+						(_level.entities[i] as Can).y += 10;
 						h.kill();
 					}
 				}

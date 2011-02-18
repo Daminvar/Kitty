@@ -34,6 +34,9 @@
 			if (entityName == "can")
 				addToEntityVectorAndStage(new Can(rect.x, rect.y, rect.width,
 					rect.height));
+			if (entityName == "rope")
+				addToEntityVectorAndStage(new Rope(this, rect.x, rect.y,
+					rect.height));
 		}
 	}
 }

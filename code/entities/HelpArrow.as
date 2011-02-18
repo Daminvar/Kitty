@@ -13,7 +13,6 @@
 			this.scaleX = scaleX;
 			this.scaleY = scaleY;
 			this.rotation = rotation;
-			
 		}
 		
 		public override function update(g:Logic):void
